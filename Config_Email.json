@@ -1,0 +1,9 @@
+{
+    "Email": {
+        "remetente": "breno19091998@hotmail.com",
+        "destinatário": "[destinatario]",
+        "cc": "",
+        "assunto": " [data] - Faturamento de honorários - [sigla]",
+        "corpo": "Olá,\n\n\nSegue o faturamento do dia [dia] para o escritório [escritório] no arquivo [nome_arquivo] em anexo.\n\n\n\nAtenciosamente,"
+    }
+}

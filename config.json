@@ -1,0 +1,14 @@
+{
+    "connections": 
+        {
+            "database_url": "sqlite:///my_database.db",
+            "api_key": "sua_chave_api_aqui"
+        },
+
+    "settings": 
+        {
+            "logging_level": "INFO",
+            "timeout": 30
+        }
+    
+}

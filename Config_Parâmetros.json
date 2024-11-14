@@ -1,0 +1,624 @@
+{
+    "Dados_Escritórios": [
+        {
+            "index": "0",
+            "Escritório": "GOULART PENTEADO ADVOGADOS",
+            "Sigla": "GPA",
+            "Email": "breno19091998@gmail.com"
+        },
+        {
+            "index": "1",
+            "Escritório": "LEITE, TOSTO E BARROS ADVOGADOS ASSOCIADOS",
+            "Sigla": "LTB",
+            "Email": "brenozia2011@gmail.com"
+        },
+        {
+            "index": "2",
+            "Escritório": "BAPTISTA LUZ ADVOGADOS",
+            "Sigla": "BLA",
+            "Email": "brenozia2011@gmail.com"
+        },
+        {
+            "index": "3",
+            "Escritório": "Nantes Mello Advogados",
+            "Sigla": "NMA",
+            "Email": "brenozia2011@gmail.com"
+        },
+        {
+            "index": "4",
+            "Escritório": "KOR SISTEMAS, ASSESSORIA ADMINISTRATIVA E TECNOLOGICA LTDA",
+            "Sigla": "KOR",
+            "Email": "bm@nantesmello.com"
+        },
+        {
+            "index": "5",
+            "Escritório": "MORAES BUENO DE AGUIAR E ADVOGADOS ASSOCIADOS",
+            "Sigla": "MBA",
+            "Email": "bm@nantesmello.com"
+        },
+        {
+            "index": "6",
+            "Escritório": "URBANO VITALINO ADVOGADOS",
+            "Sigla": "UVA",
+            "Email": "bm@nantesmello.com"
+        },
+        {
+            "index": "7",
+            "Escritório": "ALVES E VILASBOAS ADVOGADOS",
+            "Sigla": "AVA",
+            "Email": "bm@nantesmello.com"
+        },
+        {
+            "index": "8",
+            "Escritório": "PIMENTEL, VEGA, SOUZA ADVOGADOS",
+            "Sigla": "PVS",
+            "Email": "bm@nantesmello.com"
+        },
+        {
+            "index": "9",
+            "Escritório": "Benner",
+            "Sigla": "BENNER",
+            "Email": "bm@nantesmello.com"
+        },
+        {
+            "index": "10",
+            "Escritório": "ELIAS FERNANDES ADVOGADOS",
+            "Sigla": "EFA",
+            "Email": "bm@nantesmello.com"
+        },
+        {
+            "index": "11",
+            "Escritório": "PORTO LAUAND ADVOGADOS",
+            "Sigla": "PLA",
+            "Email": "bm@nantesmello.com"
+        },
+        {
+            "index": "12",
+            "Escritório": "LEITE, TOSTO E BARROS ADVOGADOS ASSOCIADOS.",
+            "Sigla": "LTB",
+            "Email": "bm@nantesmello.com.br"
+        },
+        {
+            "index": "13",
+            "Escritório": "RODRIGUEZ GRELLET ABOGADOS",
+            "Sigla": "RGA",
+            "Email": "bm@nantesmello.com"
+        },
+        {
+            "index": "14",
+            "Escritório": "BRANDAO COUTO, WIGDEROWITZ E PESSOA ADVOGADOS",
+            "Sigla": "BCW",
+            "Email": "bm@nantesmello.com"
+        }
+    ],
+    "Resultados_Tipos de resultados": [
+        {
+            "index": "0",
+            "Resultado": "Procedente",
+            "Tipo de resultado": "Sentença Desfavorável"
+        },
+        {
+            "index": "1",
+            "Resultado": "Parcialmente Procedente",
+            "Tipo de resultado": "Sentença Desfavorável"
+        },
+        {
+            "index": "2",
+            "Resultado": "Improcedente",
+            "Tipo de resultado": "Sentença Favorável"
+        },
+        {
+            "index": "3",
+            "Resultado": "Acordo",
+            "Tipo de resultado": "Acodo pré sentença"
+        },
+        {
+            "index": "4",
+            "Resultado": "Extinto",
+            "Tipo de resultado": "Sentença Favorável"
+        },
+        {
+            "index": "5",
+            "Resultado": "Bloqueio",
+            "Tipo de resultado": "Sentença Favorável"
+        },
+        {
+            "index": "6",
+            "Resultado": "Arquivado",
+            "Tipo de resultado": "Sentença Favorável"
+        },
+        {
+            "index": "7",
+            "Resultado": "Êxito Integral",
+            "Tipo de resultado": "Sentença Desfavorável"
+        }
+    ],
+    "Categorias _Objetos de cobrança": [
+        {
+            "index": "0",
+            "Categoria": "ODC",
+            "Objeto de cobrança": "PROCON"
+        },
+        {
+            "index": "1",
+            "Categoria": "PRO",
+            "Objeto de cobrança": "PROCON"
+        },
+        {
+            "index": "2",
+            "Categoria": "JEC",
+            "Objeto de cobrança": "JEC E VC"
+        },
+        {
+            "index": "3",
+            "Categoria": "CIV",
+            "Objeto de cobrança": "JEC E VC"
+        },
+        {
+            "index": "4",
+            "Categoria": "TRABALHISTA",
+            "Objeto de cobrança": "-"
+        },
+        {
+            "index": "5",
+            "Categoria": "ANC",
+            "Objeto de cobrança": "ADM"
+        },
+        {
+            "index": "6",
+            "Categoria": "MP",
+            "Objeto de cobrança": "ADM"
+        },
+        {
+            "index": "7",
+            "Categoria": "EXT",
+            "Objeto de cobrança": "ADM"
+        },
+        {
+            "index": "8",
+            "Categoria": "MPF",
+            "Objeto de cobrança": "AMD"
+        }
+    ],
+    "Honorários_Escritórios": [
+        {
+            "index": "0",
+            "Nome do escritório": "Nantes Mello Advogados",
+            "Sigla": "NMA",
+            "Tipo": "Entrada",
+            "Tipo de resultado/categoria": "JEC e VC",
+            "Valor contratado (bruto)": "320.0",
+            "Valor contratado (Líquido)": "",
+            "Concat": "NMAJEC e VC"
+        },
+        {
+            "index": "1",
+            "Nome do escritório": "Nantes Mello Advogados",
+            "Sigla": "NMA",
+            "Tipo": "Entrada",
+            "Tipo de resultado/categoria": "ADM",
+            "Valor contratado (bruto)": "0.0",
+            "Valor contratado (Líquido)": "",
+            "Concat": "NMAADM"
+        },
+        {
+            "index": "2",
+            "Nome do escritório": "Nantes Mello Advogados",
+            "Sigla": "NMA",
+            "Tipo": "Saída",
+            "Tipo de resultado/categoria": "Acodo pré sentença",
+            "Valor contratado (bruto)": "130.0",
+            "Valor contratado (Líquido)": "",
+            "Concat": "NMAAcodo pré sentença"
+        },
+        {
+            "index": "3",
+            "Nome do escritório": "Nantes Mello Advogados",
+            "Sigla": "NMA",
+            "Tipo": "Saída",
+            "Tipo de resultado/categoria": "Sentença Favorável",
+            "Valor contratado (bruto)": "250.0",
+            "Valor contratado (Líquido)": "",
+            "Concat": "NMASentença Favorável"
+        },
+        {
+            "index": "4",
+            "Nome do escritório": "Nantes Mello Advogados",
+            "Sigla": "NMA",
+            "Tipo": "Saída",
+            "Tipo de resultado/categoria": "Sentença Desfavorável",
+            "Valor contratado (bruto)": "100.0",
+            "Valor contratado (Líquido)": "",
+            "Concat": "NMASentença Desfavorável"
+        },
+        {
+            "index": "5",
+            "Nome do escritório": "LEITE, TOSTO E BARROS ADVOGADOS ASSOCIADOS",
+            "Sigla": "LTB",
+            "Tipo": "Entrada",
+            "Tipo de resultado/categoria": "JEC e VC",
+            "Valor contratado (bruto)": "205.0",
+            "Valor contratado (Líquido)": "",
+            "Concat": "LTBJEC e VC"
+        },
+        {
+            "index": "6",
+            "Nome do escritório": "LEITE, TOSTO E BARROS ADVOGADOS ASSOCIADOS",
+            "Sigla": "LTB",
+            "Tipo": "Entrada",
+            "Tipo de resultado/categoria": "ADM",
+            "Valor contratado (bruto)": "0.0",
+            "Valor contratado (Líquido)": "",
+            "Concat": "LTBADM"
+        },
+        {
+            "index": "7",
+            "Nome do escritório": "LEITE, TOSTO E BARROS ADVOGADOS ASSOCIADOS",
+            "Sigla": "LTB",
+            "Tipo": "Saída",
+            "Tipo de resultado/categoria": "Acodo pré sentença",
+            "Valor contratado (bruto)": "205.0",
+            "Valor contratado (Líquido)": "",
+            "Concat": "LTBAcodo pré sentença"
+        },
+        {
+            "index": "8",
+            "Nome do escritório": "LEITE, TOSTO E BARROS ADVOGADOS ASSOCIADOS",
+            "Sigla": "LTB",
+            "Tipo": "Saída",
+            "Tipo de resultado/categoria": "Sentença Favorável",
+            "Valor contratado (bruto)": "205.0",
+            "Valor contratado (Líquido)": "",
+            "Concat": "LTBSentença Favorável"
+        },
+        {
+            "index": "9",
+            "Nome do escritório": "LEITE, TOSTO E BARROS ADVOGADOS ASSOCIADOS",
+            "Sigla": "LTB",
+            "Tipo": "Saída",
+            "Tipo de resultado/categoria": "Sentença Desfavorável",
+            "Valor contratado (bruto)": "205.0",
+            "Valor contratado (Líquido)": "",
+            "Concat": "LTBSentença Desfavorável"
+        },
+        {
+            "index": "10",
+            "Nome do escritório": "URBANO VITALINO ADVOGADOS",
+            "Sigla": "UVA",
+            "Tipo": "Entrada",
+            "Tipo de resultado/categoria": "JEC e VC",
+            "Valor contratado (bruto)": "300.0",
+            "Valor contratado (Líquido)": "",
+            "Concat": "UVAJEC e VC"
+        },
+        {
+            "index": "11",
+            "Nome do escritório": "URBANO VITALINO ADVOGADOS",
+            "Sigla": "UVA",
+            "Tipo": "Entrada",
+            "Tipo de resultado/categoria": "ADM",
+            "Valor contratado (bruto)": "0.0",
+            "Valor contratado (Líquido)": "",
+            "Concat": "UVAADM"
+        },
+        {
+            "index": "12",
+            "Nome do escritório": "URBANO VITALINO ADVOGADOS",
+            "Sigla": "UVA",
+            "Tipo": "Saída",
+            "Tipo de resultado/categoria": "Acodo pré sentença",
+            "Valor contratado (bruto)": "100.0",
+            "Valor contratado (Líquido)": "",
+            "Concat": "UVAAcodo pré sentença"
+        },
+        {
+            "index": "13",
+            "Nome do escritório": "URBANO VITALINO ADVOGADOS",
+            "Sigla": "UVA",
+            "Tipo": "Saída",
+            "Tipo de resultado/categoria": "Sentença Favorável",
+            "Valor contratado (bruto)": "350.0",
+            "Valor contratado (Líquido)": "",
+            "Concat": "UVASentença Favorável"
+        },
+        {
+            "index": "14",
+            "Nome do escritório": "URBANO VITALINO ADVOGADOS",
+            "Sigla": "UVA",
+            "Tipo": "Saída",
+            "Tipo de resultado/categoria": "Sentença Desfavorável",
+            "Valor contratado (bruto)": "150.0",
+            "Valor contratado (Líquido)": "",
+            "Concat": "UVASentença Desfavorável"
+        },
+        {
+            "index": "15",
+            "Nome do escritório": "BAPTISTA LUZ ADVOGADOS",
+            "Sigla": "BLA",
+            "Tipo": "Entrada",
+            "Tipo de resultado/categoria": "JEC e VC",
+            "Valor contratado (bruto)": "247.0",
+            "Valor contratado (Líquido)": "",
+            "Concat": "BLAJEC e VC"
+        },
+        {
+            "index": "16",
+            "Nome do escritório": "BAPTISTA LUZ ADVOGADOS",
+            "Sigla": "BLA",
+            "Tipo": "Entrada",
+            "Tipo de resultado/categoria": "ADM",
+            "Valor contratado (bruto)": "85.0",
+            "Valor contratado (Líquido)": "",
+            "Concat": "BLAADM"
+        },
+        {
+            "index": "17",
+            "Nome do escritório": "BAPTISTA LUZ ADVOGADOS",
+            "Sigla": "BLA",
+            "Tipo": "Saída",
+            "Tipo de resultado/categoria": "Acodo pré sentença",
+            "Valor contratado (bruto)": "247.0",
+            "Valor contratado (Líquido)": "",
+            "Concat": "BLAAcodo pré sentença"
+        },
+        {
+            "index": "18",
+            "Nome do escritório": "BAPTISTA LUZ ADVOGADOS",
+            "Sigla": "BLA",
+            "Tipo": "Saída",
+            "Tipo de resultado/categoria": "Sentença Favorável",
+            "Valor contratado (bruto)": "247.0",
+            "Valor contratado (Líquido)": "",
+            "Concat": "BLASentença Favorável"
+        },
+        {
+            "index": "19",
+            "Nome do escritório": "BAPTISTA LUZ ADVOGADOS",
+            "Sigla": "BLA",
+            "Tipo": "Saída",
+            "Tipo de resultado/categoria": "Sentença Desfavorável",
+            "Valor contratado (bruto)": "247.0",
+            "Valor contratado (Líquido)": "",
+            "Concat": "BLASentença Desfavorável"
+        },
+        {
+            "index": "20",
+            "Nome do escritório": "GOULART PENTEADO ADVOGADOS",
+            "Sigla": "GPA",
+            "Tipo": "Entrada",
+            "Tipo de resultado/categoria": "JEC e VC",
+            "Valor contratado (bruto)": "267.88",
+            "Valor contratado (Líquido)": "",
+            "Concat": "GPAJEC e VC"
+        },
+        {
+            "index": "21",
+            "Nome do escritório": "GOULART PENTEADO ADVOGADOS",
+            "Sigla": "GPA",
+            "Tipo": "Entrada",
+            "Tipo de resultado/categoria": "ADM",
+            "Valor contratado (bruto)": "119.06",
+            "Valor contratado (Líquido)": "",
+            "Concat": "GPAADM"
+        },
+        {
+            "index": "22",
+            "Nome do escritório": "GOULART PENTEADO ADVOGADOS",
+            "Sigla": "GPA",
+            "Tipo": "Saída",
+            "Tipo de resultado/categoria": "Acodo pré sentença",
+            "Valor contratado (bruto)": "267.88",
+            "Valor contratado (Líquido)": "",
+            "Concat": "GPAAcodo pré sentença"
+        },
+        {
+            "index": "23",
+            "Nome do escritório": "GOULART PENTEADO ADVOGADOS",
+            "Sigla": "GPA",
+            "Tipo": "Saída",
+            "Tipo de resultado/categoria": "Sentença Favorável",
+            "Valor contratado (bruto)": "267.88",
+            "Valor contratado (Líquido)": "",
+            "Concat": "GPASentença Favorável"
+        },
+        {
+            "index": "24",
+            "Nome do escritório": "GOULART PENTEADO ADVOGADOS",
+            "Sigla": "GPA",
+            "Tipo": "Saída",
+            "Tipo de resultado/categoria": "Sentença Desfavorável",
+            "Valor contratado (bruto)": "267.88",
+            "Valor contratado (Líquido)": "",
+            "Concat": "GPASentença Desfavorável"
+        },
+        {
+            "index": "25",
+            "Nome do escritório": "PIMENTEL, VEGA, SOUZA ADVOGADOS",
+            "Sigla": "PVS",
+            "Tipo": "Entrada",
+            "Tipo de resultado/categoria": "JEC e VC",
+            "Valor contratado (bruto)": "300.0",
+            "Valor contratado (Líquido)": "",
+            "Concat": "PVSJEC e VC"
+        },
+        {
+            "index": "26",
+            "Nome do escritório": "PIMENTEL, VEGA, SOUZA ADVOGADOS",
+            "Sigla": "PVS",
+            "Tipo": "Entrada",
+            "Tipo de resultado/categoria": "ADM",
+            "Valor contratado (bruto)": "0.0",
+            "Valor contratado (Líquido)": "",
+            "Concat": "PVSADM"
+        },
+        {
+            "index": "27",
+            "Nome do escritório": "PIMENTEL, VEGA, SOUZA ADVOGADOS",
+            "Sigla": "PVS",
+            "Tipo": "Saída",
+            "Tipo de resultado/categoria": "Acodo pré sentença",
+            "Valor contratado (bruto)": "200.0",
+            "Valor contratado (Líquido)": "",
+            "Concat": "PVSAcodo pré sentença"
+        },
+        {
+            "index": "28",
+            "Nome do escritório": "PIMENTEL, VEGA, SOUZA ADVOGADOS",
+            "Sigla": "PVS",
+            "Tipo": "Saída",
+            "Tipo de resultado/categoria": "Sentença Favorável",
+            "Valor contratado (bruto)": "300.0",
+            "Valor contratado (Líquido)": "",
+            "Concat": "PVSSentença Favorável"
+        },
+        {
+            "index": "29",
+            "Nome do escritório": "PIMENTEL, VEGA, SOUZA ADVOGADOS",
+            "Sigla": "PVS",
+            "Tipo": "Saída",
+            "Tipo de resultado/categoria": "Sentença Desfavorável",
+            "Valor contratado (bruto)": "170.0",
+            "Valor contratado (Líquido)": "",
+            "Concat": "PVSSentença Desfavorável"
+        }
+    ],
+    "Ocorrências": [
+        {
+            "index": "0",
+            "Ocorrências": "Ausência de Pagamento",
+            "Desconto Fatura": "Descontamos 100% de eventual multa aplicada. ",
+            "Abrir campo": "Multa aplicada? ",
+            "Opções": "Sim\nNão",
+            "Em casos que as opções forem  SIM abrir campo (Campo 2)": "Valor da multa:"
+        },
+        {
+            "index": "1",
+            "Ocorrências": "Cálculo Incorreto",
+            "Desconto Fatura": "Descontamos 100% do valor de correção e juros do valor remanescente.",
+            "Abrir campo": "Houve Correção?",
+            "Opções": "Sim\nNão",
+            "Em casos que as opções forem  SIM abrir campo (Campo 2)": "Valor remanescente:"
+        },
+        {
+            "index": "2",
+            "Ocorrências": "Descumprimento de Acordo",
+            "Desconto Fatura": "Descontamos 100% de eventual multa aplicada. ",
+            "Abrir campo": "Multa aplicada? ",
+            "Opções": "Sim\nNão",
+            "Em casos que as opções forem  SIM abrir campo (Campo 2)": "Valor da multa:"
+        },
+        {
+            "index": "3",
+            "Ocorrências": "Descumprimento de Obrigação de Fazer",
+            "Desconto Fatura": "Descontamos 100% de eventual multa aplicada. ",
+            "Abrir campo": "Multa aplicada? ",
+            "Opções": "Sim\nNão",
+            "Em casos que as opções forem  SIM abrir campo (Campo 2)": "Valor da multa:"
+        },
+        {
+            "index": "4",
+            "Ocorrências": "Deserção",
+            "Desconto Fatura": "Descontamos 50% do valor da condenação.",
+            "Abrir campo": "Houve Condenação?",
+            "Opções": "Sim\nNão",
+            "Em casos que as opções forem  SIM abrir campo (Campo 2)": "Valor da Condenação:"
+        },
+        {
+            "index": "5",
+            "Ocorrências": "Não Apresentação de Recurso",
+            "Desconto Fatura": "Descontamos 50% do valor da condenação.",
+            "Abrir campo": "Houve Condenação?",
+            "Opções": "Sim\nNão",
+            "Em casos que as opções forem  SIM abrir campo (Campo 2)": "Valor da Condenação:"
+        },
+        {
+            "index": "6",
+            "Ocorrências": "Pagamento Intempestivo",
+            "Desconto Fatura": "Descontamos 100% de eventual multa aplicada. ",
+            "Abrir campo": "Multa aplicada? ",
+            "Opções": "Sim\nNão",
+            "Em casos que as opções forem  SIM abrir campo (Campo 2)": "Valor da multa:"
+        },
+        {
+            "index": "7",
+            "Ocorrências": "Revelia",
+            "Desconto Fatura": "Descontamos 50% do valor da condenação + 100% de eventual multa.",
+            "Abrir campo": "Houve Condenação?",
+            "Opções": "Sim\nNão",
+            "Em casos que as opções forem  SIM abrir campo (Campo 2)": "Valor da Condenação:"
+        },
+        {
+            "index": "8",
+            "Ocorrências": "Revelia",
+            "Desconto Fatura": "Descontamos 50% do valor da condenação + 100% de eventual multa.",
+            "Abrir campo": "Multa aplicada? ",
+            "Opções": "Sim\nNão",
+            "Em casos que as opções forem  SIM abrir campo (Campo 2)": "Valor da multa:"
+        },
+        {
+            "index": "9",
+            "Ocorrências": "Acordo firmado acima da alçada",
+            "Desconto Fatura": "Descontamos o valor/vouchers (valor médio de tarifa - R$ 2.000,00)/pontos (multiplicado por R$ 00,07) excedente.",
+            "Abrir campo": "Tipo de Acordo:",
+            "Opções": "Voucher\nPontos\nValores",
+            "Em casos que as opções forem  SIM abrir campo (Campo 2)": "-"
+        },
+        {
+            "index": "10",
+            "Ocorrências": "Acordo firmado indevidamente",
+            "Desconto Fatura": "Descontamos o valor/vouchers (valor médio de tarifa - R$ 2.000,00)/pontos (multiplicado por R$ 00,07).",
+            "Abrir campo": "Tipo de Acordo:",
+            "Opções": "Voucher\nPontos\nValores",
+            "Em casos que as opções forem  SIM abrir campo (Campo 2)": "-"
+        },
+        {
+            "index": "11",
+            "Ocorrências": "Encerramento Intempestivo",
+            "Desconto Fatura": "Valor fixo de R$ 10,00.",
+            "Abrir campo": "-",
+            "Opções": "-",
+            "Em casos que as opções forem  SIM abrir campo (Campo 2)": "-"
+        },
+        {
+            "index": "12",
+            "Ocorrências": "Lançamento incorreto",
+            "Desconto Fatura": "Valor fixo de R$ 5,00.",
+            "Abrir campo": "-",
+            "Opções": "-",
+            "Em casos que as opções forem  SIM abrir campo (Campo 2)": "-"
+        },
+        {
+            "index": "13",
+            "Ocorrências": "Cadastro incorreto",
+            "Desconto Fatura": "20% do valor de cadastro.",
+            "Abrir campo": "-",
+            "Opções": "-",
+            "Em casos que as opções forem  SIM abrir campo (Campo 2)": "-"
+        },
+        {
+            "index": "14",
+            "Ocorrências": "Execução Provisória Indevida",
+            "Desconto Fatura": "RETIRAR!",
+            "Abrir campo": "RETIRAR!",
+            "Opções": "RETIRAR!",
+            "Em casos que as opções forem  SIM abrir campo (Campo 2)": "RETIRAR!"
+        }
+    ],
+    "Penalização": [
+        {
+            "index": "0",
+            "Tipo de  penalização": "Multa aplicada? ",
+            "Percentual aplicado": "1"
+        },
+        {
+            "index": "1",
+            "Tipo de  penalização": "Houve Correção?",
+            "Percentual aplicado": "1"
+        },
+        {
+            "index": "2",
+            "Tipo de  penalização": "Houve Condenação?",
+            "Percentual aplicado": "5"
+        }
+    ]
+}
