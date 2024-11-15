@@ -135,9 +135,16 @@ class SqlAlchemy:
                 if campo != '_sa_instance_state':  
                     setattr(registro, campo, getattr(novos_dados, campo))
         self.SalvarAlteracoes()
+
+    def atualizar_campo(self, tabela, nome_coluna_id, id, nome_campo, novo_dado):
+        consulta = self.session.query(tabela).filter(getattr(tabela, nome_coluna_id) == id).first()
+        if consulta is None:
+            return
+        if not hasattr(consulta, nome_campo):
+            raise AttributeError(f"O campo '{nome_campo}' não existe na tabela.")
+        setattr(consulta, nome_campo, novo_dado)
+        self.SalvarAlteracoes()
         
-
-
     def SalvarAlteracoes(self):
         try:
             self.session.commit()
@@ -145,7 +152,6 @@ class SqlAlchemy:
             self.session.rollback()  
             print("Erro ao salvar alterações:", e)
 
-    
     def converter_consulta_list_of_dict(self, consulta, colunas, incluir_primeira_coluna=True):
         dados=[]
         if consulta is None:
