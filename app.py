@@ -9,12 +9,14 @@ from Drivers.DataBase_Drivers.SqlAlchemy import SqlAlchemy
 from models import Escritorios, Arquivos, Emails
 from sqlalchemy import literal
 from datetime import datetime
+from Drivers.Documents_Drivers.Excel import Excel
 
 
 class MyWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.db = SqlAlchemy(config.dados['connections']['database_url'])
+        self.planilha = False
         self.setWindowTitle("Ferramenta de automação")
         self.setGeometry(100, 50, 1000, 600)
         self.setFixedSize(1003, 600)
@@ -22,7 +24,7 @@ class MyWindow(QMainWindow):
         self.setCentralWidget(self.stacked_widget)
         self.page_email = Page_Emails(self.stacked_widget, self)
         self.stacked_widget.addWidget(Page_Inicial(self.stacked_widget, self))
-        self.stacked_widget.addWidget(Page_Emails(self.stacked_widget, self))
+        self.stacked_widget.addWidget(self.page_email)
         self.stacked_widget.addWidget(Pag_Parâmetros(self.stacked_widget, self))
         self.stacked_widget.addWidget(Page_Relatorios(self.stacked_widget, self))
     
@@ -61,12 +63,17 @@ class MyWindow(QMainWindow):
         self.db.Fechar_sessao()
         return resultado
 
-    def RegistroEmail(self, id):
-         print(f'o id é esse {id}')
+    def RegistroArquivo(self, id):
          self.db.iniciar_sessao()
-         texto = self.db.ObterRegistro(Emails,'id',id)
+         registro = self.db.ObterRegistro(Arquivos,'id',id)
          self.db.Fechar_sessao()
-         return texto
+         return registro
+    
+    def RegistroEmail(self, id):
+         self.db.iniciar_sessao()
+         registro = self.db.ObterRegistro(Emails,'id',id)
+         self.db.Fechar_sessao()
+         return registro
     
     def set_padrao_email(self, novo_padrao):
         padrao = config_email.dados['Email']
@@ -89,6 +96,19 @@ class MyWindow(QMainWindow):
         self.db.iniciar_sessao()
         self.db.atualizar_tabela(Escritorios, data)
         self.db.Fechar_sessao()
+
+
+    def atualizar_registro_tabela_emails(self, dados, id):
+        email_atualizado = Emails(
+            remetente = dados[0],
+            destinatario =  dados[1] ,
+            cc = dados[2],
+            assunto = dados[3],
+            corpo = dados[4],
+            data_envio = None
+        )
+        self.db.atualizar_registro(Emails, id, email_atualizado)
+
 
     def atualizar_tabela_emails(self):
         consulta = (
@@ -122,9 +142,25 @@ class MyWindow(QMainWindow):
             ).replace("[dia]",datetime.now().strftime("%d")        
             ).replace("[sigla]", registro_escritorio['sigla']
             ).replace("[nome_arquivo]", registro_arquivo['nome_arquivo']
-            )          
+            )   
+    
+    def atualizar_page_emails(self): 
+        self.page_email.atualizar() 
+
+    def abrir_planilha_faturamento(self, id):
+        conteudo_binario = self.db.ObterCampo(Arquivos,'id', id, 'arquivo')
+        nome_arquivo = self.db.ObterCampo(Arquivos,'id', id, 'nome_arquivo')
+        self.planilha = Excel(conteudo_binario = conteudo_binario)
+        self.planilha.abrir_editar_planilha_conteudo_binario(nome_arquivo)
                   
-         
+    def Salvar_planilha_faturamento(self, id):
+        if self.planilha:
+            conteudo_atualizado = self.planilha.obter_conteudo_binario_planilha_editada()
+            self.db.atualizar_campo(Arquivos,'id',id,'arquivo',conteudo_atualizado)
+
+    def excluir_planilha_temporaria(self):
+        if self.planilha:
+            self.planilha.excluir_arquivo_temp_binario()
         
 
     

@@ -39,26 +39,20 @@ class Page_Emails(QWidget):
         self.button4 = CustomButtonClick(self,[267,110,80,80],trasnparente=True)
         self.button4.clicked.connect(self.abrir_janela_Emails_Geral)
 
+        self.button4 = CustomButtonClick(self,[380,110,80,80],trasnparente=True)
+        self.button4.clicked.connect(self.atualizar)
+
         self.dados = parent.arquivos_pendentes()
 
         self.table1 = CustomTable(
                 parent = self, geometry = [235, 240, 737, 310],
                 qtd_cols_visible = 4, rows_height = 30, data = self.dados, cols_icon = True,
                 path_icons_cols = r"C:\Users\breno\OneDrive\Documentos\Projeto Faturamento\GUI\PyQt\lupa.png",
-                widths_fixed_cols = [10,320,200,170,30],col_flag=3, col_ocultar = 1,
-                style="""
-                    QTableWidget {
-                        border: none; /* Remove as bordas da tabela */
-                        gridline-color: transparent; /* Remove as linhas de grade */
-                    },
-                    QTableWidget::item:selected {
-                        background-color: red; /* Cor de fundo da seleção */
-                        color: white; /* Cor do texto da seleção */
-                    }
-                    """
+                widths_fixed_cols = [10,320,200,170,30],col_flag=3, col_ocultar = 1
                 ) 
         
         self.table1.itemClicked.connect(self.itemDetalheClicado)
+        self.atualizar()
 
     def go_to_page_Inicial(self):
         self.stacked_widget.setCurrentIndex(0)    
@@ -96,7 +90,37 @@ class Page_Emails(QWidget):
         ConfigurarEmailsGeral(self.parent).exec()
 
     def abrir_janela_Email(self, item):
-         ConfigurarEmail(self.parent,self.table1.item(item.row(),0).text()).exec()
+         ConfigurarEmail(self.parent, self.table1.item(item.row(),0).text()).exec()
+
+    def atualizar(self):
+        self.parent.atualizar_tabela_emails()
+        dados = self.parent.arquivos_pendentes()
+        if dados is None:
+            self.show_message_box("Nenhum dado encontrado.")
+            return
+        if self.table1 is not None:
+            self.table1.itemClicked.disconnect()  
+            self.table1.deleteLater()  
+            self.table1 = None  
+        self.table1 = CustomTable(
+            parent=self,
+            geometry=[235, 240, 737, 310],
+            qtd_cols_visible=4,
+            rows_height=30,
+            data=dados,
+            cols_icon=True,
+            path_icons_cols=r"C:\Users\breno\OneDrive\Documentos\Projeto Faturamento\GUI\PyQt\lupa.png",
+            widths_fixed_cols=[10, 320, 200, 170, 30],
+            col_flag=3,
+            col_ocultar=1
+        )
+        self.table1.itemClicked.connect(self.itemDetalheClicado)
+        self.table1.show() 
+        if self.stacked_widget.currentIndex() == 1:
+            self.show_message_box("Dados atualizados com sucesso!")
+
+
+
 
 class ConfigurarEmailsGeral(QDialog):
 
@@ -138,7 +162,6 @@ class ConfigurarEmailsGeral(QDialog):
         dados = [self.remetente.text(),self.destiny_edit.text(),self.cc_edit.text(),self.assunto_edit.text(),
                 self.corpo_edit.text()]
         self.parent.set_padrao_email(dados)
-        self.parent.atualizar_tabela_emails()
         self.show_message_box("Dados salvos com sucesso!")
 
     def show_message_box(self, texto):
@@ -164,6 +187,8 @@ class ConfigurarEmail(QDialog):
 
     def __init__(self, parent, id):
         super().__init__()
+        self.id = id
+        self.parent = parent
         self.keyboard = Controller()
         self.setWindowTitle("Configurar email")
         pg = parent.geometry()
@@ -178,17 +203,53 @@ class ConfigurarEmail(QDialog):
         label_layout = QVBoxLayout(label)
         label.setLayout(label_layout)
         self.labels_edit = []
+        nome_arquivo = parent.RegistroArquivo(id)['nome_arquivo']
         em = parent.RegistroEmail(id)
         self.remetente = CustomLabel(self, [123,37,418,30],transparente=True, append_list=True, text = em['remetente'])
-        self.destiny_edit = CustomLabel(self, [123,91,418,30], True ,transparente=True,append_list=True, text = em['destinatario'])
+        self.destiny_edit = CustomLabel(self, [123,91,418,30],transparente=True,append_list=True, text = em['destinatario'])
         self.cc_edit = CustomLabel(self, [123,145,418,30], True,transparente=True,append_list=True, text = em['cc'])
         self.assunto_edit = CustomLabel(self, [123,195,418,30], True,transparente=True,append_list=True, text = em['assunto'])
         self.corpo_edit = CustomLabel(self, [125,323,420,170], True, paragrafo=True,transparente=True,append_list=True, text = em['corpo'])
+        self.nome_arquivo = CustomLabel(self, [171,250,230,30],transparente=False, append_list=True, text = nome_arquivo, font=10, negrito=True)
+        self.button_salvar = CustomButtonClick(self, [430,257,130,50],trasnparente=True)
+        self.button_salvar.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+        self.button_salvar.clicked.connect(self.salvar)
+        self.button_abrir_arquivo = CustomButtonClick(self, [120,240,50,50],trasnparente=True)
+        self.button_abrir_arquivo.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+        self.button_abrir_arquivo.clicked.connect(self.abrir_arquivo)
 
     def mousePressEvent(self, event):
         if self.rect().contains(event.pos()):
                 self.keyboard.press(Key.enter)
                 for label in self.labels_edit:
                     label.finish_editing()
+
+    def show_message_box(self, texto):
+        msg_box = QMessageBox(self)
+        msg_box.setWindowTitle("Mensagem")
+        msg_box.setText(texto)
+        msg_box.setIcon(QMessageBox.Icon.Information)
+        msg_box.setStandardButtons(QMessageBox.StandardButton.Ok)
+        msg_box.exec() 
+
+    def salvar(self):
+        for label in self.labels_edit:
+                label.finish_editing()
+        dados = [self.remetente.text(),self.destiny_edit.text(),self.cc_edit.text(),self.assunto_edit.text(),
+                self.corpo_edit.text()]
+        self.parent.atualizar_registro_tabela_emails(dados, self.id)
+        self.parent.Salvar_planilha_faturamento(self.id)
+        self.show_message_box("Dados salvos com sucesso!")
+
+    def abrir_arquivo(self):
+        self.parent.abrir_planilha_faturamento(self.id)
+
+    def closeEvent(self, event):
+        self.exclui_arquivo_temp()
+        event.accept()
+
+    def exclui_arquivo_temp(self):
+        self.parent.excluir_planilha_temporaria()
+
                         
 

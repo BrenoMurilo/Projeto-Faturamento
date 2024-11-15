@@ -10,7 +10,7 @@ class CustomLabel(QLabel):
     clicked = pyqtSignal() 
 
     def __init__(self, parent, geometry, edit=False, text='editar', font=12, centralizar=False, 
-                 topo=False, transparente=False, paragrafo=False, append_list = False):
+                 topo=False, transparente=False, paragrafo=False, append_list = False, negrito = False):
         super().__init__(parent)
         
         self.setGeometry(*geometry)
@@ -21,7 +21,9 @@ class CustomLabel(QLabel):
             self.setAlignment(Qt.AlignmentFlag.AlignTop) 
         if topo:
             self.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignLeft)
-        self.setFont(QFont('Arial', font))
+        font = QFont('Arial', font)
+        if negrito: font.setBold(True)
+        self.setFont(font)
         if transparente:
             self.setStyleSheet("""
                 QLabel {

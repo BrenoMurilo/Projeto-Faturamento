@@ -22,6 +22,7 @@ consulta2 = (
         .filter(Emails.data_envio == None)
         )
 resultado = db.converter_consulta_list_of_list(consulta2)[1:]
-tabela = db.ObterTodosRegistros(Emails, tipo_retorno='list_of_list')
+tabela = db.ObterTodosRegistros(Arquivos, tipo_retorno='list_of_list')
 db.Fechar_sessao()
-print(F'AQUI ESTÃO OS DADOS {resultado}')
+db.AlterarCampo(Arquivos,'id',1,'nome_arquivo','Faturamento - BLA - 12.11.2024.xlsx')
+print(F'AQUI ESTÃO OS DADOS {tabela[1][3]}')
