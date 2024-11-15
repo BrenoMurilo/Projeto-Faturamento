@@ -3,6 +3,7 @@ import sys
 from app import MyWindow
 
 
+
 def main():
     app = QApplication(sys.argv)
     window = MyWindow()

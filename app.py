@@ -27,8 +27,9 @@ class MyWindow(QMainWindow):
         self.stacked_widget.addWidget(self.page_email)
         self.stacked_widget.addWidget(Pag_Parâmetros(self.stacked_widget, self))
         self.stacked_widget.addWidget(Page_Relatorios(self.stacked_widget, self))
+
+
     
-      
     def show_message_box(self, texto):
         msg_box = QMessageBox(self)
         msg_box.setWindowTitle("Mensagem")
@@ -143,6 +144,7 @@ class MyWindow(QMainWindow):
             ).replace("[sigla]", registro_escritorio['sigla']
             ).replace("[nome_arquivo]", registro_arquivo['nome_arquivo']
             )   
+
     
     def atualizar_page_emails(self): 
         self.page_email.atualizar() 

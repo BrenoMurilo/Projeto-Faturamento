@@ -164,7 +164,6 @@ class SqlAlchemy:
             dados.append(linha)
         return dados
     
-
     def converter_consulta_list_of_list(self, consulta, colunas= False, incluir_primeira_coluna=True):
         dados = []
         if consulta is None:

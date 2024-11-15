@@ -118,9 +118,7 @@ class Page_Emails(QWidget):
         self.table1.show() 
         if self.stacked_widget.currentIndex() == 1:
             self.show_message_box("Dados atualizados com sucesso!")
-
-
-
+            
 
 class ConfigurarEmailsGeral(QDialog):
 
