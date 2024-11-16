@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout
+from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QFileDialog
 from PyQt6.QtWidgets import QTableWidget, QTableWidgetItem, QMessageBox, QMainWindow, QLabel, QVBoxLayout, QComboBox, QLineEdit, QListWidget, QStackedWidget
 from PyQt6.QtCore import Qt, QTimer, QEvent
 import sys
@@ -49,6 +49,12 @@ class Pag_Parâmetros(QWidget):
 
         self.button_atualizar = CustomButtonClick(self,[685,124,60,63], trasnparente=True)
         self.button_atualizar.clicked.connect(self.atualizar)
+
+        self.button_exportar= CustomButtonClick(self,[585,124,60,63], trasnparente=True)
+        self.button_exportar.clicked.connect(self.exportar_parametros)
+
+        self.button_importar= CustomButtonClick(self,[485,124,60,63], trasnparente=True)
+        self.button_importar.clicked.connect(self.abrir_explorador)
 
         self.button1 = CustomButtonClick(self,[25,120,180,50],trasnparente=True)
         self.button1.clicked.connect(self.go_to_page_inicial)
@@ -146,6 +152,19 @@ class Pag_Parâmetros(QWidget):
 
     def limpar_filtros_tabela(self):
         self.table1.limpar_filtros()
+
+    def abrir_explorador(self):
+        # Abrir o explorador de arquivos
+        caminho_arquivo, _ = QFileDialog.getOpenFileName(
+            self,
+            "Escolha um arquivo",
+            "",
+            ";Arquivos de planilha (*.xlsx)"
+        )
+
+    def exportar_parametros(self):
+        self.parent.exportar_parametros()
+        
 
 
   

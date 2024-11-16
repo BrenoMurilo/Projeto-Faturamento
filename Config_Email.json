@@ -3,7 +3,7 @@
         "remetente": "breno19091998@hotmail.com",
         "destinatário": "[destinatario]",
         "cc": "",
-        "assunto": " [data] - Faturamento de honorários - [sigla]",
+        "assunto": " [sigla]  - Faturamento de honorários -  [data]",
         "corpo": "Olá,\n\n\nSegue o faturamento do dia [dia] para o escritório [sigla] no arquivo [nome_arquivo] em anexo.\n\n\n\nAtenciosamente,"
     }
 }

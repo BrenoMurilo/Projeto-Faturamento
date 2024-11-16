@@ -27,6 +27,7 @@ class MyWindow(QMainWindow):
         self.stacked_widget.addWidget(self.page_email)
         self.stacked_widget.addWidget(Pag_Parâmetros(self.stacked_widget, self))
         self.stacked_widget.addWidget(Page_Relatorios(self.stacked_widget, self))
+    
 
 
     
@@ -158,11 +159,16 @@ class MyWindow(QMainWindow):
     def Salvar_planilha_faturamento(self, id):
         if self.planilha:
             conteudo_atualizado = self.planilha.obter_conteudo_binario_planilha_editada()
-            self.db.atualizar_campo(Arquivos,'id',id,'arquivo',conteudo_atualizado)
+            if conteudo_atualizado:
+                self.db.atualizar_campo(Arquivos,'id',id,'arquivo',conteudo_atualizado)
 
     def excluir_planilha_temporaria(self):
         if self.planilha:
             self.planilha.excluir_arquivo_temp_binario()
+
+    def exportar_parametros(self):
+        config_param.gerar_planilha("Parâmetros")
+        
         
 
     

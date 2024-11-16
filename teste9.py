@@ -1,6 +1,7 @@
 from Drivers.DataBase_Drivers.SqlAlchemy import SqlAlchemy
 from models import Escritorios, Arquivos, Emails
 from config import config, config_param, config_email
+import os
 
 db = SqlAlchemy(config.dados['connections']['database_url'])
 db.iniciar_sessao()
@@ -21,8 +22,19 @@ consulta2 = (
         .join(Emails, Arquivos.id == Emails.id)  
         .filter(Emails.data_envio == None)
         )
+
+def obtercontedubinario(nome_arquivo):
+    caminho_arquivo = os.path.join(r"C:\Users\breno\OneDrive\Documentos\Projeto Faturamento\Planilhas de faturamento", 
+                                   nome_arquivo)
+    with open(caminho_arquivo, "rb") as arquivo:
+        conteudo_binario = arquivo.read()
+        return conteudo_binario
+
+
+conteudo_arquivo = obtercontedubinario('Faturamento - LTB - 12.11.2024.xlsx')
+
 resultado = db.converter_consulta_list_of_list(consulta2)[1:]
 tabela = db.ObterTodosRegistros(Arquivos, tipo_retorno='list_of_list')
 db.Fechar_sessao()
-db.AlterarCampo(Arquivos,'id',1,'nome_arquivo','Faturamento - BLA - 12.11.2024.xlsx')
+db.AlterarCampo(Arquivos,'id',3,'arquivo',conteudo_arquivo)
 print(F'AQUI ESTÃO OS DADOS {tabela[1][3]}')

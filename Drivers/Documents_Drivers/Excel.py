@@ -4,13 +4,14 @@ import json
 import tempfile
 import os
 import shutil
+import csv
 
 class Excel:
 
-    def __init__(self, caminho_arquivo=False, conteudo_binario = False):
+    def __init__(self, caminho_arquivo=False, conteudo_binario = False, read_only=False):
         if caminho_arquivo:
             self.caminho_arquivo = caminho_arquivo
-            self.wb = load_workbook(caminho_arquivo)
+            self.wb = load_workbook(caminho_arquivo,read_only = read_only)
         if conteudo_binario:
             self.conteudo_binario = conteudo_binario
         self.safe_path = False
@@ -66,12 +67,31 @@ class Excel:
         os.startfile(self.safe_path)
         
     def obter_conteudo_binario_planilha_editada(self):
+        conteudo_atualizado= False
         if self.safe_path and os.path.exists(self.safe_path):
             with open(self.safe_path , 'rb') as updated_file:
                 conteudo_atualizado = updated_file.read()
             self.excluir_arquivo_temp_binario()
-            return conteudo_atualizado
+        return conteudo_atualizado
 
     def excluir_arquivo_temp_binario(self):
-        if self.safe_path and os.path.exists(self.safe_path):
-            os.remove(self.safe_path )
+        try:
+            if self.safe_path and os.path.exists(self.safe_path):
+                os.remove(self.safe_path )
+        except:
+            print('Não foi possível excluir o arquivo')
+    
+    def obter_data_frame_convertendo_em_csv(self):
+        sheet = self.wb.active
+        temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".csv", mode="w", newline="", encoding="utf-8")
+        with temp_file as f:
+            writer = csv.writer(f)
+            for row in sheet.iter_rows(values_only=True):
+                writer.writerow(row)
+            temp_file_path = temp_file.name
+        self.wb.close()
+        df = pd.read_csv(temp_file_path)
+        os.remove(temp_file_path)
+        return df
+    
+    
