@@ -37,5 +37,5 @@ resultado = db.converter_consulta_list_of_list(consulta2)[1:]
 tabela = db.ObterTodosRegistros(Escritorios, tipo_retorno='list_of_list')
 registro_escritorio = db.ObterRegistro(Escritorios,'id',2)
 db.Fechar_sessao()
-#db.AlterarCampo(Arquivos,'id',3,'arquivo',conteudo_arquivo)
+db.AlterarCampo(Arquivos,'id',3,'arquivo',conteudo_arquivo)
 print(F'AQUI ESTÃO OS DADOS {tabela}')
