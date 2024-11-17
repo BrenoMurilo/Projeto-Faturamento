@@ -187,7 +187,7 @@
             "Sigla": "NMA",
             "Tipo": "Entrada",
             "Tipo de resultado/categoria": "JEC e VC",
-            "Valor contratado (bruto)": "320.0",
+            "Valor contratado (bruto)": "100",
             "Valor contratado (Líquido)": "",
             "Concat": "NMAJEC e VC"
         },
@@ -397,7 +397,7 @@
             "Sigla": "GPA",
             "Tipo": "Entrada",
             "Tipo de resultado/categoria": "ADM",
-            "Valor contratado (bruto)": "119.06",
+            "Valor contratado (bruto)": "100",
             "Valor contratado (Líquido)": "",
             "Concat": "GPAADM"
         },
