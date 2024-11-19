@@ -5,6 +5,8 @@ import tempfile
 import os
 import shutil
 import csv
+from openpyxl.styles import Border
+from openpyxl.utils import get_column_letter
 
 class Excel:
 
@@ -93,5 +95,44 @@ class Excel:
         df = pd.read_csv(temp_file_path)
         os.remove(temp_file_path)
         return df
+
+    def remove_bordas(self, alvo, sheet = 0):
+        sheet = self.wb[sheet] if isinstance(sheet, str) else self.wb.worksheets[sheet]
+        if isinstance(alvo, int):  
+            for cell in sheet[alvo]:  
+                cell.border = Border() 
+        elif isinstance(alvo, str): 
+            for row in sheet[alvo]: 
+                for cell in row: 
+                    cell.border = Border()  
+        else:
+            raise ValueError("O argumento 'alvo' deve ser um número (linha) ou uma string (intervalo)!")
     
-    
+    def mesclar_titulos(self, row_titulos, sheet = 0):
+        sheet = self.wb[sheet] if isinstance(sheet, str) else self.wb.worksheets[sheet]
+        group = 0 
+        for cell in sheet[row_titulos + 1]:
+            if cell.value is None:
+                sheet.merge_cells(start_row = row_titulos, start_column = group + 1, 
+                                  end_row = row_titulos, end_column = cell.column - 1)
+                group = cell.column
+
+    def auto_ajustar_largura_colunas(self, sheet=0):
+        sheet = self.wb[sheet] if isinstance(sheet, str) else self.wb.worksheets[sheet]
+        for column in sheet.columns:
+            fez = False
+            max_length = 0
+            column_letter = get_column_letter(column[0].column) 
+            for cell in column:
+                if cell.value and cell.value.strip() != "":
+                    fez = True
+                    max_length = max(max_length, len(str(cell.value)))
+                    adjusted_width = max_length + 5
+                    sheet.column_dimensions[column_letter].width = adjusted_width
+            print(fez)
+
+    def salvar_arquivo(self, caminho_arquivo = None):
+        caminho_arquivo = caminho_arquivo or self.caminho_arquivo
+        if not caminho_arquivo:
+            raise ValueError("O caminho do arquivo não foi especificado!")
+        self.wb.save(caminho_arquivo)

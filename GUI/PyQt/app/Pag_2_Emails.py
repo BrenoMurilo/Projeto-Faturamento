@@ -131,7 +131,7 @@ class ConfigurarEmailsGeral(QDialog):
         self.setGeometry(pg.x() + 220, pg.y() + 50, pg.width() - 800, pg.height() - 500)
         self.setFixedSize(pg.width() - 421, pg.height() - 86)
         self.layout = QVBoxLayout(self)
-        pixmap = QPixmap(r"C:\Users\breno\Downloads\Configurar e-mails geral (2).png")
+        pixmap = QPixmap(r"C:\Users\breno\Downloads\Configurar e-mails geral (3).png")
         label = QLabel(self)
         label.setPixmap(pixmap)
         label.setScaledContents(True)
@@ -141,7 +141,7 @@ class ConfigurarEmailsGeral(QDialog):
         self.labels_edit = []
         em = parent.padrao_email()
         self.remetente = CustomLabel(self, [123,37,418,30],transparente=True, append_list=True, text = em['remetente'])
-        self.destiny_edit = CustomLabel(self, [123,91,418,30], True ,transparente=True,append_list=True, text = em['destinatário'])
+        self.destiny_edit = CustomLabel(self, [123,91,418,30],transparente=True,append_list=True, text = em['destinatário'])
         self.cc_edit = CustomLabel(self, [123,145,418,30], True,transparente=True,append_list=True, text = em['cc'])
         self.assunto_edit = CustomLabel(self, [123,195,418,30], True,transparente=True,append_list=True, text = em['assunto'])
         self.corpo_edit = CustomLabel(self, [125,323,418,170], True, paragrafo=True,transparente=True,append_list=True, text = em['corpo'])
@@ -204,7 +204,7 @@ class ConfigurarEmail(QDialog):
         nome_arquivo = parent.RegistroArquivo(id)['nome_arquivo']
         em = parent.RegistroEmail(id)
         self.remetente = CustomLabel(self, [123,37,418,30],transparente=True, append_list=True, text = em['remetente'])
-        self.destiny_edit = CustomLabel(self, [123,91,418,30],transparente=True,append_list=True, text = em['destinatario'])
+        self.destiny_edit = CustomLabel(self, [123,91,418,30],True, transparente=True,append_list=True, text = em['destinatario'])
         self.cc_edit = CustomLabel(self, [123,145,418,30], True,transparente=True,append_list=True, text = em['cc'])
         self.assunto_edit = CustomLabel(self, [123,195,418,30], True,transparente=True,append_list=True, text = em['assunto'])
         self.corpo_edit = CustomLabel(self, [125,323,420,170], True, paragrafo=True,transparente=True,append_list=True, text = em['corpo'])

@@ -3,6 +3,7 @@ import pandas as pd
 import openpyxl
 from pathlib import Path
 import os
+from Drivers.Documents_Drivers.Excel import Excel
 
 class JsonDriver:
     def __init__(self, nome_arquivo):
@@ -40,26 +41,38 @@ class JsonDriver:
     def gerar_planilha(self, nome_planilha):
         df = pd.DataFrame()
         for i, key in enumerate(self.dados.keys()):
+            index_delete =0
             dados = self.listar_valores_chave(key)
             if df.empty:
                 df = pd.DataFrame(dados)
                 df.columns = dados[0]
-                df = df.drop(0)
                 if 'index' in df.columns:
                     df = df.drop(columns='index')
+                    index_delete = 1 
+                colunas_vazias = [" " * (x + i + 1) for x in range(len(dados[0]) - (1 + index_delete))]
+                y = i  + len(dados) - (1 + index_delete) + 1
+                df.columns = [key] + colunas_vazias
             else:
                 new_df = pd.DataFrame(dados).reset_index(drop=True)
                 new_df.columns = dados[0]
-                new_df = new_df.drop(0)
                 if 'index' in new_df.columns:
                     new_df = new_df.drop(columns='index')
+                    index_delete = 1
+                colunas_vazias = [" " * (x + y + 1) for x in range(len(dados[0]) - (1 + index_delete))]
+                y = i  + y + len(dados) - (1 + index_delete) + 1
+                new_df.columns = [key] + colunas_vazias
                 df = df.join(new_df, lsuffix='_df', rsuffix=f'_new_{i}')
-            vazios = " " * (i +1)
-            df[vazios] = None
+            coluna_vazia = " " * y
+            df[coluna_vazia] = None
         downloads_folder = str(Path.home() / "Downloads")
         nome_planilha = nome_planilha + ".xlsx" if not nome_planilha.endswith(".xlsx") else nome_planilha
         caminho_planilha = os.path.join(downloads_folder, nome_planilha) 
         df.to_excel(caminho_planilha,index=False)
+        wb = Excel(caminho_planilha)
+        wb.remove_bordas(1)
+        wb.auto_ajustar_largura_colunas()
+        wb.mesclar_titulos(1)
+        wb.salvar_arquivo()
         os.startfile(caminho_planilha)
             
               

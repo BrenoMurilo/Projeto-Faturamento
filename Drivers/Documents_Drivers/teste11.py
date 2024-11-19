@@ -1,3 +1,6 @@
- 
-vazios = vazios = [" " * i for i in range(5)][4]
+
+vazios = vazios = [" " * (i+1) for i in range(5)]
 print(vazios)
+
+
+

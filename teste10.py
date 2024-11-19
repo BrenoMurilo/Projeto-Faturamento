@@ -37,5 +37,5 @@ class MyWindow(QMainWindow):
 
 app = QApplication(sys.argv)
 window = MyWindow()
-window.show()
+#window.show()
 sys.exit(app.exec())
