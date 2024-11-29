@@ -21,10 +21,11 @@ class JsonDriver:
             print("Erro ao decodificar o arquivo JSON.")
             return {}
 
-    def listar_valores_chave(self, chave_superior):
-            if chave_superior not in self.dados:
+    def listar_valores_chave(self, chave_superior, json_dict = 0):
+            json_dict = self.dados if json_dict == 0 else json_dict
+            if chave_superior not in json_dict:
                 return []
-            dados = self.dados[chave_superior]
+            dados = json_dict[chave_superior]
             if not isinstance(dados, list) or not all(isinstance(item, dict) for item in dados):
                 return []
             nomes_colunas = list(dados[0].keys())
@@ -37,6 +38,37 @@ class JsonDriver:
     def salvar_alteracoes(self):
            with open(self.nome_arquivo, 'w', encoding='utf-8') as f:
                 json.dump(self.dados, f, ensure_ascii=False, indent=4)
+
+    def diferencas_entre_jsons(self, dict2):
+        dict1 = self.dados
+        resultados = {"dict1": {"keys": [], "campos": []}, "dict2": {"keys": [], "campos": []}}
+        diferencas = 0
+        all_keys = set(dict1.keys()).union(set(dict2.keys()))
+        for key in all_keys:
+            if not key in dict1: 
+                resultados["dict1"]["keys"].append(key)
+                diferencas += 1
+            if not key in dict2: 
+                resultados["dict2"]["keys"].append(key)
+                diferencas += 1
+            if key in dict1 and key in dict2:
+                campos_dict1 = self.listar_valores_chave(key)
+                campos_dict2 = self.listar_valores_chave(key, json_dict = dict2)
+                all_campos = set(campos_dict1).union(set(campos_dict2))
+                for campo in all_campos:
+                    if not campo in campos_dict1:
+                         resultados["dict1"]["campos"].append((key, campo))
+                         diferencas += 1
+                    if not campo in campos_dict2:
+                         resultados["dict2"]["campos"].append((key, campo))
+                         diferencas += 1
+        return None if diferencas == 0 else resultados
+             
+            
+        
+            
+
+
 
     def gerar_planilha(self, nome_planilha):
         df = pd.DataFrame()
@@ -72,6 +104,11 @@ class JsonDriver:
         wb.remove_bordas(1)
         wb.auto_ajustar_largura_colunas()
         wb.mesclar_titulos(1)
+        wb.formatacao_condicional ("A1:XFD1","notEqual",['""'],"A6A6A6")
+        wb.formatacao_condicional("A2:XFD2","notEqual",['""'],"D9D9D9")
+        wb.formatacao_condicional("A3:XFD1048576","notEqual",['""'],"F2F2F2")
+        wb.retirar_linhas_grade()
+        wb.definir_zoom(92)
         wb.salvar_arquivo()
         os.startfile(caminho_planilha)
             

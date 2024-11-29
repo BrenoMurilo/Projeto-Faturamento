@@ -7,6 +7,8 @@ import shutil
 import csv
 from openpyxl.styles import Border
 from openpyxl.utils import get_column_letter
+from openpyxl.styles import PatternFill
+from openpyxl.formatting.rule import CellIsRule
 
 class Excel:
 
@@ -136,3 +138,20 @@ class Excel:
         if not caminho_arquivo:
             raise ValueError("O caminho do arquivo não foi especificado!")
         self.wb.save(caminho_arquivo)
+
+
+    def formatacao_condicional(self, cells, operator, formula, color, color_end_gradiente = False,
+                                type = "solid", sheet=0):
+        sheet = self.wb[sheet] if isinstance(sheet, str) else self.wb.worksheets[sheet]
+        color_end = color_end_gradiente if color_end_gradiente else color
+        green_fill = PatternFill(start_color=color, end_color=color_end, fill_type="solid")
+        rule = CellIsRule(operator=operator, formula=formula, fill=green_fill)
+        sheet.conditional_formatting.add(cells, rule)
+
+    def retirar_linhas_grade(self, sheet=0):
+        sheet = self.wb[sheet] if isinstance(sheet, str) else self.wb.worksheets[sheet]
+        sheet.sheet_view.showGridLines = False
+
+    def definir_zoom(self, zoom, sheet=0):
+        sheet = self.wb[sheet] if isinstance(sheet, str) else self.wb.worksheets[sheet]
+        sheet.sheet_view.zoomScale = zoom

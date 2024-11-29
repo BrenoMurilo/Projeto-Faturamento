@@ -54,7 +54,7 @@ class Pag_Parâmetros(QWidget):
         self.button_exportar.clicked.connect(self.exportar_parametros)
 
         self.button_importar= CustomButtonClick(self,[485,124,60,63], trasnparente=True)
-        self.button_importar.clicked.connect(self.abrir_explorador)
+        self.button_importar.clicked.connect(self.importar)
 
         self.button1 = CustomButtonClick(self,[25,120,180,50],trasnparente=True)
         self.button1.clicked.connect(self.go_to_page_inicial)
@@ -153,14 +153,36 @@ class Pag_Parâmetros(QWidget):
     def limpar_filtros_tabela(self):
         self.table1.limpar_filtros()
 
-    def abrir_explorador(self):
-        # Abrir o explorador de arquivos
+    def importar(self):
         caminho_arquivo, _ = QFileDialog.getOpenFileName(
             self,
             "Escolha um arquivo",
             "",
             ";Arquivos de planilha (*.xlsx)"
         )
+        if caminho_arquivo:
+            resultado = self.parent.importar_parametros(caminho_arquivo)
+            if not resultado:
+                self.show_message_box("Parâmetros importados com sucesso")
+            else:
+                if isinstance(resultado, str):
+                    self.show_message_box(resultado)
+                    return
+                if resultado["dict1"]["keys"]:
+                    key = resultado["dict1"]["keys"][0]
+                    self.show_message_box(f"A tabela {key} não foi localizada na planilha")
+                    return
+                if resultado["dict1"]["campos"]:
+                    campo = resultado["dict1"]["campos"][0]
+                    self.show_message_box(f"O campo {campo} não foi localizado na planilha")
+                    return
+                if resultado["dict2"]["keys"]:
+                    key = resultado["dict2"]["keys"][0]
+                    self.show_message_box(f"A tabela {key} não foi localizada nos parâmetros")
+                    return
+                if resultado["dict2"]["campos"]:
+                    campo = resultado["dict2"]["campos"][0]
+                    self.show_message_box(f"O campo {campo} não foi localizado nos parâmetros")
 
     def exportar_parametros(self):
         self.parent.exportar_parametros()

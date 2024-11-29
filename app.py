@@ -10,6 +10,7 @@ from models import Escritorios, Arquivos, Emails
 from sqlalchemy import literal
 from datetime import datetime
 from Drivers.Documents_Drivers.Excel import Excel
+import json
 
 
 class MyWindow(QMainWindow):
@@ -27,9 +28,6 @@ class MyWindow(QMainWindow):
         self.stacked_widget.addWidget(self.page_email)
         self.stacked_widget.addWidget(Pag_Parâmetros(self.stacked_widget, self))
         self.stacked_widget.addWidget(Page_Relatorios(self.stacked_widget, self))
-    
-
-
     
     def show_message_box(self, texto):
         msg_box = QMessageBox(self)
@@ -168,6 +166,20 @@ class MyWindow(QMainWindow):
 
     def exportar_parametros(self):
         config_param.gerar_planilha("Parâmetros")
+
+    def importar_parametros(self, caminho_arquivo):
+        wb = Excel(caminho_arquivo)
+        try:
+            dict = wb.Gerar_Dicionario_de_Grupos_de_Colunas(NomeGrupoPrimeiraLinha=True, index=True)
+        except:
+            return "Os dados do arquivo não estão no formato esperado!"
+        diferencas = config_param.diferencas_entre_jsons(dict)
+        if not diferencas:
+            with open("Config_Parâmetros.json", "w", encoding="utf-8") as json_file:
+                json.dump(dict, json_file, ensure_ascii=False, indent=4)
+            return None
+        else:
+            return diferencas
         
         
 
