@@ -17,6 +17,7 @@ class Pag_Parâmetros(QWidget):
     def __init__(self, stacked_widget, parent):
         super().__init__()
         self.parent = parent
+        self.geometry_base =  parent.geometry()
         self.stacked_widget = stacked_widget
         self.keyboard = Controller()
         self.filtrarTabela= False
@@ -118,6 +119,7 @@ class Pag_Parâmetros(QWidget):
         param_selecionado = self.comboBox1.combo_box.itemText(0)
         dados = self.parent.parâmetros(param_selecionado)
         filtros = self.table1.ObterLinha(0)
+        geometry= self.table1.geometry().getRect()
         if self.table1 is not None:
             self.table1.clicked.disconnect()         
             self.layout().removeWidget(self.table1)  
@@ -125,7 +127,7 @@ class Pag_Parâmetros(QWidget):
             self.table1 = None                     
         self.table1 = CustomTable(
             parent=self,
-            geometry=[235, 240, 737, 310],
+            geometry=[*geometry],
             qtd_cols_visible=4,
             rows_height=30,
             data=dados,
@@ -163,29 +165,55 @@ class Pag_Parâmetros(QWidget):
         if caminho_arquivo:
             resultado = self.parent.importar_parametros(caminho_arquivo)
             if not resultado:
-                self.show_message_box("Parâmetros importados com sucesso")
+                self.show_message_box("Parâmetros importados com sucesso!")
             else:
                 if isinstance(resultado, str):
                     self.show_message_box(resultado)
                     return
                 if resultado["dict1"]["keys"]:
                     key = resultado["dict1"]["keys"][0]
-                    self.show_message_box(f"A tabela {key} não foi localizada na planilha")
+                    self.show_message_box(f"A tabela {key} não foi localizada nos parâmetros!")
                     return
                 if resultado["dict1"]["campos"]:
                     campo = resultado["dict1"]["campos"][0]
-                    self.show_message_box(f"O campo {campo} não foi localizado na planilha")
+                    self.show_message_box(f"O campo {campo} não foi localizado nos parâmetros!")
                     return
                 if resultado["dict2"]["keys"]:
                     key = resultado["dict2"]["keys"][0]
-                    self.show_message_box(f"A tabela {key} não foi localizada nos parâmetros")
+                    self.show_message_box(f"A tabela {key} não foi localizada na planilha!")
                     return
                 if resultado["dict2"]["campos"]:
                     campo = resultado["dict2"]["campos"][0]
-                    self.show_message_box(f"O campo {campo} não foi localizado nos parâmetros")
+                    self.show_message_box(f"O campo {campo} não foi localizado na planilha!")
 
     def exportar_parametros(self):
         self.parent.exportar_parametros()
+
+
+    def resize_widget(self, widget):
+        base = self.geometry_base
+        per_x = widget.geometry().x() / base.width()
+        per_y = widget.geometry().y() / base.height()
+        per_width = widget.geometry().width() / base.width()
+        per_height = widget.geometry().height() / base.height()
+        base_atual = self.parent.geometry()
+        widget.setGeometry(int(base_atual.width() * per_x),int(base_atual.height() * per_y), 
+                           int(base_atual.width() * per_width), int(base_atual.height() * per_height))
+
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        self.resize_widget(self.button1)
+        self.resize_widget(self.button2)
+        self.resize_widget(self.button3)
+        self.resize_widget(self.button_atualizar)
+        self.resize_widget(self.button_exportar)
+        self.resize_widget(self.button_importar)
+        self.resize_widget(self.button_salvar)
+        self.resize_widget(self.button_limpar_filtros)
+        self.resize_widget(self.table1)       
+        self.resize_widget(self.comboBox1.combo_box)
+        self.comboBox1.resize()
+        self.geometry_base = self.geometry()
         
 
 

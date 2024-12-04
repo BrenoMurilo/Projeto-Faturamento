@@ -15,6 +15,8 @@ class CustomLabel(QLabel):
         
         self.setGeometry(*geometry)
         self.setText(text)
+        self.paragrafo = paragrafo
+        self.edit = edit
         if centralizar:
             self.setAlignment(Qt.AlignmentFlag.AlignCenter)
         if paragrafo:
@@ -108,14 +110,23 @@ class CustomLabel(QLabel):
                 self.line_edit.clearFocus()
             self.show()
 
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        if self.edit:
+            if self.paragrafo:
+                self.text_edit.setGeometry(self.geometry())
+            else:
+                self.line_edit.setGeometry(self.geometry())
+
 
 class CustomButtonClick(QPushButton):
 
-    def __init__(self, parent, geometry, texto=False, trasnparente = False, style = False):
+    def __init__(self, parent, geometry, texto=False, trasnparente = False, style = False, 
+                 adicionar_no_layout = False):
         super().__init__(parent)
+        self.setGeometry(*geometry)
         if texto:
             self.setText(texto)
-        self.setGeometry(*geometry)
         self.setCursor(Qt.CursorShape.PointingHandCursor)
         if trasnparente:
             self.setStyleSheet("""
@@ -197,8 +208,8 @@ class CustomComboBox(QWidget):
         altura_padrao = self.list_height
         max_itens_visiveis = self.list_height // self.item_height
         list_height = itens_filtrados * self.item_height if itens_filtrados <= max_itens_visiveis else altura_padrao
-        self.list_widget.setGeometry(int(self.__geometry__[0]), int(self.__geometry__[1] + 45),
-                                    int(self.__geometry__[2]), list_height)
+        self.list_widget.setGeometry(int(self.combo_box.geometry().x()), int(self.combo_box.geometry().y() + self.line_edit_ofsset),
+                                    int(self.combo_box.geometry().width()), self.list_height)
     def toggle_list(self):
             if self.list_widget.isVisible():
                 self.list_widget.hide()
@@ -213,8 +224,8 @@ class CustomComboBox(QWidget):
                     item = self.list_widget.item(i)
                     if text_selecionado == item.text():
                         item.setHidden(True)
-                        self.list_widget.setGeometry(int(self.__geometry__[0]),int(self.__geometry__[1]+ self.line_edit_ofsset),
-                                                        int(self.__geometry__[2]),self.list_height - self.item_height)
+                        self.list_widget.setGeometry(int(self.combo_box.geometry().x()),int(self.combo_box.geometry().y() + self.line_edit_ofsset),
+                                                        int(self.combo_box.geometry().width()),self.list_height - self.item_height)
                 self.list_widget.show()
                 if self.search:
                     self.search_line_edit.show()
@@ -234,6 +245,19 @@ class CustomComboBox(QWidget):
             if self.search: 
                 self.search_line_edit.hide()
                 self.icon_label.hide()
+
+    def resize(self):
+        self.list_button.setGeometry(int(self.combo_box.geometry().x()),int(self.combo_box.geometry().y()), int(self.combo_box.geometry().width()),int(self.combo_box.geometry().height()))
+        self.list_widget.setGeometry(int(self.combo_box.geometry().x()), int(self.combo_box.geometry().y() + self.line_edit_ofsset),
+                                        int(self.combo_box.geometry().width()), self.list_height)
+        if self.search:
+            self.search_line_edit.setGeometry(int(self.combo_box.geometry().x()),int(self.combo_box.geometry().y()+25),int(self.combo_box.geometry().width()),
+                                                int(self.combo_box.geometry().height()))
+            self.icon_label.setGeometry(int(self.combo_box.geometry().x() + int(self.combo_box.geometry().width()) - int(self.combo_box.geometry().height())), int(self.combo_box.geometry().y() + 25), int(self.combo_box.geometry().height()-2), int(self.combo_box.geometry().height()                                                                                                                                 ))
+            
+            
+
+
 
 class CustomTable(QTableWidget):
      
@@ -259,6 +283,7 @@ class CustomTable(QTableWidget):
         self.app = parent
         self.setCursor(Qt.CursorShape.PointingHandCursor)
         self.dados = data
+        self.search_option = search_option
         self.qtd_cols_visible= qtd_cols_visible
         self.cols_icon = cols_icon
         self.col_ocultar = col_ocultar
@@ -267,12 +292,13 @@ class CustomTable(QTableWidget):
         self.rows_height = rows_height
         self.__width__ = geometry[2]
         self.__height__ = geometry[3]
-        ln_Dados = 1 if search_option else 0
+        ln_Dados = 1 if self.search_option else 0
         qtd_rows = (len(data) + ln_Dados - 1) 
         self.widht_colum_icone = 15 if cols_icon else 0
         self.scroll_offset_horizontal = scroll_offset_horizontal
         self.scroll_offset_vertical = scroll_offset_vertical
         self.setGeometry(*geometry)
+        self.base_geometry = self.geometry()
         self.setRowCount(qtd_rows) 
         self.setColumnCount(len(data[0])) 
         self.dimensionar_celulas(data, qtd_cols_visible, qtd_rows, cols_icon,col_ocultar, widths_fixed_cols)
@@ -461,9 +487,9 @@ class CustomTable(QTableWidget):
         qtd_colunas = len(data[0]) +  1 if cols_icon else len(data[0]) - 1 if col_ocultar else len(data[0])
         qtd_colunas_visiveis = qtd_cols_visible if qtd_colunas > qtd_cols_visible else qtd_colunas
         scroll_offset_horizontal = self.scroll_offset_horizontal if qtd_colunas > qtd_colunas_visiveis else 0
-        altura = self.__height__ 
+        altura = self.geometry().height()
         scroll_offset_vertical = self.scroll_offset_vertical if qtd_rows >= round((altura/ self.rows_height)) else 0
-        largura = self.__width__ - scroll_offset_vertical - self.widht_colum_icone - self.index_offset
+        largura = self.geometry().width() - scroll_offset_vertical - self.widht_colum_icone - self.index_offset
         divisao = largura / qtd_colunas_visiveis
         divisao_arred = math.floor(largura / qtd_colunas_visiveis)
         resto = (divisao - divisao_arred) * qtd_colunas_visiveis
@@ -472,10 +498,14 @@ class CustomTable(QTableWidget):
         if widths_fixed_cols:
             if isinstance(widths_fixed_cols, list):
                     for col in range(self.columnCount()):
-                        self.setColumnWidth(col, widths_fixed_cols[col])
+                        width = widths_fixed_cols[col]
+                        per = width / self.base_geometry.width()
+                        self.setColumnWidth(col,int(self.geometry().width() * per))
             else:
                 for col in range(self.columnCount()):
-                    self.setColumnWidth(col, widths_fixed_cols)
+                    width = widths_fixed_cols
+                    per = width / self.base_geometry.width()
+                    self.setColumnWidth(col, int(self.geometry().width() * per))
         else:
             for col in range(self.columnCount()):
                 self.setColumnWidth(col, int(width_table_coluns + resto))
@@ -484,12 +514,18 @@ class CustomTable(QTableWidget):
             for row in range(self.rowCount()):
                 self.setRowHeight(row, rows_height)
 
-
     def limpar_filtros(self):
           for col in range(self.columnCount()):
               item = self.item(0, col)
               if item.text() != "":
                   item.setText("")
+
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        ln_Dados = 1 if self.search_option else 0
+        qtd_rows = (len(self.dados) + ln_Dados - 1) 
+        self.dimensionar_celulas(self.dados, self.qtd_cols_visible,qtd_rows,self.cols_icon,self.col_ocultar, 
+                                 self.widths_fixed_cols)
 
     
                 

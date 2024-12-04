@@ -35,9 +35,10 @@ class JsonDriver:
                 tabela.append(linha)
             return tabela
     
-    def salvar_alteracoes(self):
+    def salvar_alteracoes(self, novos_dados=False):
+           dados = novos_dados if novos_dados else self.dados
            with open(self.nome_arquivo, 'w', encoding='utf-8') as f:
-                json.dump(self.dados, f, ensure_ascii=False, indent=4)
+                json.dump(dados, f, ensure_ascii=False, indent=4)
 
     def diferencas_entre_jsons(self, dict2):
         dict1 = self.dados
@@ -52,25 +53,19 @@ class JsonDriver:
                 resultados["dict2"]["keys"].append(key)
                 diferencas += 1
             if key in dict1 and key in dict2:
-                campos_dict1 = self.listar_valores_chave(key)
-                campos_dict2 = self.listar_valores_chave(key, json_dict = dict2)
-                all_campos = set(campos_dict1).union(set(campos_dict2))
+                campos_dict1 = self.listar_valores_chave(key)[0]
+                campos_dict2 = self.listar_valores_chave(key, json_dict = dict2)[0]
+                all_campos = campos_dict1 + [campo for campo in campos_dict2 if campo not in campos_dict1]
                 for campo in all_campos:
                     if not campo in campos_dict1:
-                         resultados["dict1"]["campos"].append((key, campo))
+                         resultados["dict1"]["campos"].append(campo)
                          diferencas += 1
                     if not campo in campos_dict2:
-                         resultados["dict2"]["campos"].append((key, campo))
+                         resultados["dict2"]["campos"].append(campo)
                          diferencas += 1
         return None if diferencas == 0 else resultados
              
-            
-        
-            
-
-
-
-    def gerar_planilha(self, nome_planilha):
+    def gerar_planilha(self, nome_planilha, nome_aba = False):
         df = pd.DataFrame()
         for i, key in enumerate(self.dados.keys()):
             index_delete =0
@@ -109,6 +104,8 @@ class JsonDriver:
         wb.formatacao_condicional("A3:XFD1048576","notEqual",['""'],"F2F2F2")
         wb.retirar_linhas_grade()
         wb.definir_zoom(92)
+        if nome_aba:
+            wb.alterar_nome_aba(nome_aba)
         wb.salvar_arquivo()
         os.startfile(caminho_planilha)
             

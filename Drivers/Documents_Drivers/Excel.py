@@ -155,3 +155,7 @@ class Excel:
     def definir_zoom(self, zoom, sheet=0):
         sheet = self.wb[sheet] if isinstance(sheet, str) else self.wb.worksheets[sheet]
         sheet.sheet_view.zoomScale = zoom
+
+    def alterar_nome_aba(self, novo_nome, sheet=0):
+        sheet = self.wb[sheet] if isinstance(sheet, str) else self.wb.worksheets[sheet]
+        sheet.title =novo_nome

@@ -2,7 +2,9 @@
     "connections": 
         {
             "database_url": "sqlite:///my_database.db",
-            "api_key": "sua_chave_api_aqui"
+            "api_key": "sua_chave_api_aqui",
+            "password_email": "dngs rsbe btfj rdqt"
+            
         },
 
     "settings": 

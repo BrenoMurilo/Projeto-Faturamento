@@ -15,6 +15,7 @@ class Page_Relatorios(QWidget):
     def __init__(self, stacked_widget, parent):
         super().__init__()
         self.parent = parent
+        self.geometry_base =  parent.geometry()
         self.stacked_widget = stacked_widget
         self.layout = QVBoxLayout(self)
         pixmap = QPixmap(r"C:\Users\breno\Downloads\Template - Relatórios (11).png")
@@ -74,6 +75,30 @@ class Page_Relatorios(QWidget):
             self.comboBox1.hide_list() 
             self.comboBox2.hide_list() 
             self.comboBox3.hide_list() 
+
+    def resize_widget(self, widget):
+        base = self.geometry_base
+        per_x = widget.geometry().x() / base.width()
+        per_y = widget.geometry().y() / base.height()
+        per_width = widget.geometry().width() / base.width()
+        per_height = widget.geometry().height() / base.height()
+        base_atual = self.parent.geometry()
+        widget.setGeometry(int(base_atual.width() * per_x),int(base_atual.height() * per_y), 
+                           int(base_atual.width() * per_width), int(base_atual.height() * per_height))
+
+
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        self.resize_widget(self.button1)
+        self.resize_widget(self.button2)
+        self.resize_widget(self.button3)
+        self.resize_widget(self.comboBox1.combo_box)
+        self.comboBox1.resize()
+        self.resize_widget(self.comboBox2.combo_box)
+        self.comboBox2.resize()
+        self.resize_widget(self.comboBox3.combo_box)
+        self.comboBox3.resize()
+        self.geometry_base = self.geometry()
             
 
 

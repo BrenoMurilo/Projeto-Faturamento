@@ -135,47 +135,47 @@
     ],
     "Categorias _Objetos de cobrança": [
         {
-            "index": "0",
+            "index": 0,
             "Categoria": "ODC",
             "Objeto de cobrança": "PROCON"
         },
         {
-            "index": "1",
+            "index": 1,
             "Categoria": "PRO",
             "Objeto de cobrança": "PROCON"
         },
         {
-            "index": "2",
+            "index": 2,
             "Categoria": "JEC",
             "Objeto de cobrança": "JEC E VC"
         },
         {
-            "index": "3",
+            "index": 3,
             "Categoria": "CIV",
             "Objeto de cobrança": "JEC E VC"
         },
         {
-            "index": "4",
+            "index": 4,
             "Categoria": "TRABALHISTA",
             "Objeto de cobrança": "-"
         },
         {
-            "index": "5",
+            "index": 5,
             "Categoria": "ANC",
             "Objeto de cobrança": "ADM"
         },
         {
-            "index": "6",
+            "index": 6,
             "Categoria": "MP",
             "Objeto de cobrança": "ADM"
         },
         {
-            "index": "7",
+            "index": 7,
             "Categoria": "EXT",
             "Objeto de cobrança": "ADM"
         },
         {
-            "index": "8",
+            "index": 8,
             "Categoria": "MPF",
             "Objeto de cobrança": "AMD"
         }
@@ -330,161 +330,11 @@
             "Valor contratado (bruto)": "150.0",
             "Valor contratado (Líquido)": "",
             "Concat": "UVASentença Desfavorável"
-        },
-        {
-            "index": "15",
-            "Nome do escritório": "BAPTISTA LUZ ADVOGADOS",
-            "Sigla": "BLA",
-            "Tipo": "Entrada",
-            "Tipo de resultado/categoria": "JEC e VC",
-            "Valor contratado (bruto)": "247.0",
-            "Valor contratado (Líquido)": "",
-            "Concat": "BLAJEC e VC"
-        },
-        {
-            "index": "16",
-            "Nome do escritório": "BAPTISTA LUZ ADVOGADOS",
-            "Sigla": "BLA",
-            "Tipo": "Entrada",
-            "Tipo de resultado/categoria": "ADM",
-            "Valor contratado (bruto)": "85.0",
-            "Valor contratado (Líquido)": "",
-            "Concat": "BLAADM"
-        },
-        {
-            "index": "17",
-            "Nome do escritório": "BAPTISTA LUZ ADVOGADOS",
-            "Sigla": "BLA",
-            "Tipo": "Saída",
-            "Tipo de resultado/categoria": "Acodo pré sentença",
-            "Valor contratado (bruto)": "247.0",
-            "Valor contratado (Líquido)": "",
-            "Concat": "BLAAcodo pré sentença"
-        },
-        {
-            "index": "18",
-            "Nome do escritório": "BAPTISTA LUZ ADVOGADOS",
-            "Sigla": "BLA",
-            "Tipo": "Saída",
-            "Tipo de resultado/categoria": "Sentença Favorável",
-            "Valor contratado (bruto)": "247.0",
-            "Valor contratado (Líquido)": "",
-            "Concat": "BLASentença Favorável"
-        },
-        {
-            "index": "19",
-            "Nome do escritório": "BAPTISTA LUZ ADVOGADOS",
-            "Sigla": "BLA",
-            "Tipo": "Saída",
-            "Tipo de resultado/categoria": "Sentença Desfavorável",
-            "Valor contratado (bruto)": "247.0",
-            "Valor contratado (Líquido)": "",
-            "Concat": "BLASentença Desfavorável"
-        },
-        {
-            "index": "20",
-            "Nome do escritório": "GOULART PENTEADO ADVOGADOS",
-            "Sigla": "GPA",
-            "Tipo": "Entrada",
-            "Tipo de resultado/categoria": "JEC e VC",
-            "Valor contratado (bruto)": "267.88",
-            "Valor contratado (Líquido)": "",
-            "Concat": "GPAJEC e VC"
-        },
-        {
-            "index": "21",
-            "Nome do escritório": "GOULART PENTEADO ADVOGADOS",
-            "Sigla": "GPA",
-            "Tipo": "Entrada",
-            "Tipo de resultado/categoria": "ADM",
-            "Valor contratado (bruto)": "100",
-            "Valor contratado (Líquido)": "",
-            "Concat": "GPAADM"
-        },
-        {
-            "index": "22",
-            "Nome do escritório": "GOULART PENTEADO ADVOGADOS",
-            "Sigla": "GPA",
-            "Tipo": "Saída",
-            "Tipo de resultado/categoria": "Acodo pré sentença",
-            "Valor contratado (bruto)": "267.88",
-            "Valor contratado (Líquido)": "",
-            "Concat": "GPAAcodo pré sentença"
-        },
-        {
-            "index": "23",
-            "Nome do escritório": "GOULART PENTEADO ADVOGADOS",
-            "Sigla": "GPA",
-            "Tipo": "Saída",
-            "Tipo de resultado/categoria": "Sentença Favorável",
-            "Valor contratado (bruto)": "267.88",
-            "Valor contratado (Líquido)": "",
-            "Concat": "GPASentença Favorável"
-        },
-        {
-            "index": "24",
-            "Nome do escritório": "GOULART PENTEADO ADVOGADOS",
-            "Sigla": "GPA",
-            "Tipo": "Saída",
-            "Tipo de resultado/categoria": "Sentença Desfavorável",
-            "Valor contratado (bruto)": "267.88",
-            "Valor contratado (Líquido)": "",
-            "Concat": "GPASentença Desfavorável"
-        },
-        {
-            "index": "25",
-            "Nome do escritório": "PIMENTEL, VEGA, SOUZA ADVOGADOS",
-            "Sigla": "PVS",
-            "Tipo": "Entrada",
-            "Tipo de resultado/categoria": "JEC e VC",
-            "Valor contratado (bruto)": "300.0",
-            "Valor contratado (Líquido)": "",
-            "Concat": "PVSJEC e VC"
-        },
-        {
-            "index": "26",
-            "Nome do escritório": "PIMENTEL, VEGA, SOUZA ADVOGADOS",
-            "Sigla": "PVS",
-            "Tipo": "Entrada",
-            "Tipo de resultado/categoria": "ADM",
-            "Valor contratado (bruto)": "0.0",
-            "Valor contratado (Líquido)": "",
-            "Concat": "PVSADM"
-        },
-        {
-            "index": "27",
-            "Nome do escritório": "PIMENTEL, VEGA, SOUZA ADVOGADOS",
-            "Sigla": "PVS",
-            "Tipo": "Saída",
-            "Tipo de resultado/categoria": "Acodo pré sentença",
-            "Valor contratado (bruto)": "200.0",
-            "Valor contratado (Líquido)": "",
-            "Concat": "PVSAcodo pré sentença"
-        },
-        {
-            "index": "28",
-            "Nome do escritório": "PIMENTEL, VEGA, SOUZA ADVOGADOS",
-            "Sigla": "PVS",
-            "Tipo": "Saída",
-            "Tipo de resultado/categoria": "Sentença Favorável",
-            "Valor contratado (bruto)": "300.0",
-            "Valor contratado (Líquido)": "",
-            "Concat": "PVSSentença Favorável"
-        },
-        {
-            "index": "29",
-            "Nome do escritório": "PIMENTEL, VEGA, SOUZA ADVOGADOS",
-            "Sigla": "PVS",
-            "Tipo": "Saída",
-            "Tipo de resultado/categoria": "Sentença Desfavorável",
-            "Valor contratado (bruto)": "170.0",
-            "Valor contratado (Líquido)": "",
-            "Concat": "PVSSentença Desfavorável"
         }
     ],
     "Ocorrências": [
         {
-            "index": "0",
+            "index": 0,
             "Ocorrências": "Ausência de Pagamento",
             "Desconto Fatura": "Descontamos 100% de eventual multa aplicada. ",
             "Abrir campo": "Multa aplicada? ",
@@ -492,7 +342,7 @@
             "Em casos que as opções forem  SIM abrir campo (Campo 2)": "Valor da multa:"
         },
         {
-            "index": "1",
+            "index": 1,
             "Ocorrências": "Cálculo Incorreto",
             "Desconto Fatura": "Descontamos 100% do valor de correção e juros do valor remanescente.",
             "Abrir campo": "Houve Correção?",
@@ -500,7 +350,7 @@
             "Em casos que as opções forem  SIM abrir campo (Campo 2)": "Valor remanescente:"
         },
         {
-            "index": "2",
+            "index": 2,
             "Ocorrências": "Descumprimento de Acordo",
             "Desconto Fatura": "Descontamos 100% de eventual multa aplicada. ",
             "Abrir campo": "Multa aplicada? ",
@@ -508,7 +358,7 @@
             "Em casos que as opções forem  SIM abrir campo (Campo 2)": "Valor da multa:"
         },
         {
-            "index": "3",
+            "index": 3,
             "Ocorrências": "Descumprimento de Obrigação de Fazer",
             "Desconto Fatura": "Descontamos 100% de eventual multa aplicada. ",
             "Abrir campo": "Multa aplicada? ",
@@ -516,7 +366,7 @@
             "Em casos que as opções forem  SIM abrir campo (Campo 2)": "Valor da multa:"
         },
         {
-            "index": "4",
+            "index": 4,
             "Ocorrências": "Deserção",
             "Desconto Fatura": "Descontamos 50% do valor da condenação.",
             "Abrir campo": "Houve Condenação?",
@@ -524,7 +374,7 @@
             "Em casos que as opções forem  SIM abrir campo (Campo 2)": "Valor da Condenação:"
         },
         {
-            "index": "5",
+            "index": 5,
             "Ocorrências": "Não Apresentação de Recurso",
             "Desconto Fatura": "Descontamos 50% do valor da condenação.",
             "Abrir campo": "Houve Condenação?",
@@ -532,7 +382,7 @@
             "Em casos que as opções forem  SIM abrir campo (Campo 2)": "Valor da Condenação:"
         },
         {
-            "index": "6",
+            "index": 6,
             "Ocorrências": "Pagamento Intempestivo",
             "Desconto Fatura": "Descontamos 100% de eventual multa aplicada. ",
             "Abrir campo": "Multa aplicada? ",
@@ -540,7 +390,7 @@
             "Em casos que as opções forem  SIM abrir campo (Campo 2)": "Valor da multa:"
         },
         {
-            "index": "7",
+            "index": 7,
             "Ocorrências": "Revelia",
             "Desconto Fatura": "Descontamos 50% do valor da condenação + 100% de eventual multa.",
             "Abrir campo": "Houve Condenação?",
@@ -548,7 +398,7 @@
             "Em casos que as opções forem  SIM abrir campo (Campo 2)": "Valor da Condenação:"
         },
         {
-            "index": "8",
+            "index": 8,
             "Ocorrências": "Revelia",
             "Desconto Fatura": "Descontamos 50% do valor da condenação + 100% de eventual multa.",
             "Abrir campo": "Multa aplicada? ",
@@ -556,7 +406,7 @@
             "Em casos que as opções forem  SIM abrir campo (Campo 2)": "Valor da multa:"
         },
         {
-            "index": "9",
+            "index": 9,
             "Ocorrências": "Acordo firmado acima da alçada",
             "Desconto Fatura": "Descontamos o valor/vouchers (valor médio de tarifa - R$ 2.000,00)/pontos (multiplicado por R$ 00,07) excedente.",
             "Abrir campo": "Tipo de Acordo:",
@@ -564,7 +414,7 @@
             "Em casos que as opções forem  SIM abrir campo (Campo 2)": "-"
         },
         {
-            "index": "10",
+            "index": 10,
             "Ocorrências": "Acordo firmado indevidamente",
             "Desconto Fatura": "Descontamos o valor/vouchers (valor médio de tarifa - R$ 2.000,00)/pontos (multiplicado por R$ 00,07).",
             "Abrir campo": "Tipo de Acordo:",
@@ -572,7 +422,7 @@
             "Em casos que as opções forem  SIM abrir campo (Campo 2)": "-"
         },
         {
-            "index": "11",
+            "index": 11,
             "Ocorrências": "Encerramento Intempestivo",
             "Desconto Fatura": "Valor fixo de R$ 10,00.",
             "Abrir campo": "-",
@@ -580,7 +430,7 @@
             "Em casos que as opções forem  SIM abrir campo (Campo 2)": "-"
         },
         {
-            "index": "12",
+            "index": 12,
             "Ocorrências": "Lançamento incorreto",
             "Desconto Fatura": "Valor fixo de R$ 5,00.",
             "Abrir campo": "-",
@@ -588,7 +438,7 @@
             "Em casos que as opções forem  SIM abrir campo (Campo 2)": "-"
         },
         {
-            "index": "13",
+            "index": 13,
             "Ocorrências": "Cadastro incorreto",
             "Desconto Fatura": "20% do valor de cadastro.",
             "Abrir campo": "-",
@@ -596,7 +446,7 @@
             "Em casos que as opções forem  SIM abrir campo (Campo 2)": "-"
         },
         {
-            "index": "14",
+            "index": 14,
             "Ocorrências": "Execução Provisória Indevida",
             "Desconto Fatura": "RETIRAR!",
             "Abrir campo": "RETIRAR!",
@@ -606,17 +456,17 @@
     ],
     "Penalização": [
         {
-            "index": "0",
+            "index": 0,
             "Tipo de  penalização": "Multa aplicada? ",
             "Percentual aplicado": "1"
         },
         {
-            "index": "1",
+            "index": 1,
             "Tipo de  penalização": "Houve Correção?",
             "Percentual aplicado": "1"
         },
         {
-            "index": "2",
+            "index": 2,
             "Tipo de  penalização": "Houve Condenação?",
             "Percentual aplicado": "5"
         }

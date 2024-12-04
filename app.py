@@ -5,6 +5,7 @@ from GUI.PyQt.app.Pag_2_Emails import Page_Emails
 from GUI.PyQt.app.Pag_3_Parâmetros import Pag_Parâmetros
 from GUI.PyQt.app.Pag_4_Relatorios import Page_Relatorios
 from config import config, config_param, config_email
+from config import Config
 from Drivers.DataBase_Drivers.SqlAlchemy import SqlAlchemy
 from models import Escritorios, Arquivos, Emails
 from sqlalchemy import literal
@@ -18,9 +19,11 @@ class MyWindow(QMainWindow):
         super().__init__()
         self.db = SqlAlchemy(config.dados['connections']['database_url'])
         self.planilha = False
+        self.config_parametros = config_param
         self.setWindowTitle("Ferramenta de automação")
         self.setGeometry(100, 50, 1000, 600)
-        self.setFixedSize(1003, 600)
+        self.base_geometry = self.geometry()
+        #self.setFixedSize(1003, 600)
         self.stacked_widget = QStackedWidget(self)
         self.setCentralWidget(self.stacked_widget)
         self.page_email = Page_Emails(self.stacked_widget, self)
@@ -41,7 +44,7 @@ class MyWindow(QMainWindow):
         return list(config_param.dados.keys())
     
     def parâmetros(self, tipo):
-       return config_param.listar_valores_chave(tipo)
+       return self.config_parametros.listar_valores_chave(tipo)
     
     def padrao_email(self):
         return config_email.dados['Email']
@@ -165,18 +168,19 @@ class MyWindow(QMainWindow):
             self.planilha.excluir_arquivo_temp_binario()
 
     def exportar_parametros(self):
-        config_param.gerar_planilha("Parâmetros")
+        config_param.gerar_planilha("Parâmetros", "Parâmetros")
 
     def importar_parametros(self, caminho_arquivo):
         wb = Excel(caminho_arquivo)
         try:
-            dict = wb.Gerar_Dicionario_de_Grupos_de_Colunas(NomeGrupoPrimeiraLinha=True, index=True)
+            dict = wb.Gerar_Dicionario_de_Grupos_de_Colunas('Parâmetros' ,
+                                                            NomeGrupoPrimeiraLinha=True, index=True)
         except:
-            return "Os dados do arquivo não estão no formato esperado!"
-        diferencas = config_param.diferencas_entre_jsons(dict)
+            return "Os dados do arquivo não estão no formato esperado!" 
+        diferencas = self.config_parametros.diferencas_entre_jsons(dict)
         if not diferencas:
-            with open("Config_Parâmetros.json", "w", encoding="utf-8") as json_file:
-                json.dump(dict, json_file, ensure_ascii=False, indent=4)
+            self.config_parametros.salvar_alteracoes(dict)
+            self.config_parametros = Config('Config_Parâmetros.json')
             return None
         else:
             return diferencas

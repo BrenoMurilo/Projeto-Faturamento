@@ -16,15 +16,16 @@ class Page_Emails(QWidget):
         super().__init__()
         self.keyboard = Controller()
         self.parent = parent
+        self.geometry_base =  parent.geometry()
         self.stacked_widget = stacked_widget
         self.layout = QVBoxLayout(self)
         pixmap = QPixmap(r"C:\Users\breno\Downloads\Template - Emails (5).png")
-        label = QLabel(self)
-        label.setPixmap(pixmap)
-        label.setScaledContents(True)
-        self.layout.addWidget(label)
-        label_layout = QVBoxLayout(label)
-        label.setLayout(label_layout)
+        self.label = QLabel(self)
+        self.label.setPixmap(pixmap)
+        self.label.setScaledContents(True)
+        self.layout.addWidget(self.label)
+        self.label_layout = QVBoxLayout(self.label)
+        self.label.setLayout(self.label_layout)
         self.keyboard = Controller()
 
         self.button1 = CustomButtonClick(self,[25,120,178,50],trasnparente=True)
@@ -39,13 +40,14 @@ class Page_Emails(QWidget):
         self.button4 = CustomButtonClick(self,[267,110,80,80],trasnparente=True)
         self.button4.clicked.connect(self.abrir_janela_Emails_Geral)
 
-        self.button4 = CustomButtonClick(self,[380,110,80,80],trasnparente=True)
-        self.button4.clicked.connect(self.atualizar)
+        self.button5 = CustomButtonClick(self,[380,110,80,80],trasnparente=True)
+        self.button5.clicked.connect(self.atualizar)
 
         self.dados = parent.arquivos_pendentes()
-
+        self.table_geometry_base = [235, 240, 737, 310]
+        self.fixed_wdth_coluns_base = [10, 320, 200, 170, 30]
         self.table1 = CustomTable(
-                parent = self, geometry = [235, 240, 737, 310],
+                parent = self, geometry = self.table_geometry_base ,
                 qtd_cols_visible = 4, rows_height = 30, data = self.dados, cols_icon = True,
                 path_icons_cols = r"C:\Users\breno\OneDrive\Documentos\Projeto Faturamento\GUI\PyQt\lupa.png",
                 widths_fixed_cols = [10,320,200,170,30],col_flag=3, col_ocultar = 1
@@ -92,25 +94,47 @@ class Page_Emails(QWidget):
     def abrir_janela_Email(self, item):
          ConfigurarEmail(self.parent, self.table1.item(item.row(),0).text()).exec()
 
+    def resize_widget(self, widget):
+        base = self.geometry_base
+        per_x = widget.geometry().x() / base.width()
+        per_y = widget.geometry().y() / base.height()
+        per_width = widget.geometry().width() / base.width()
+        per_height = widget.geometry().height() / base.height()
+        base_atual = self.parent.geometry()
+        widget.setGeometry(int(base_atual.width() * per_x),int(base_atual.height() * per_y), 
+                           int(base_atual.width() * per_width), int(base_atual.height() * per_height))
+    
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        self.resize_widget(self.button1)
+        self.resize_widget(self.button2)
+        self.resize_widget(self.button3)
+        self.resize_widget(self.button4)
+        self.resize_widget(self.button5)
+        self.resize_widget(self.table1)
+        self.geometry_base = self.geometry()
+
     def atualizar(self):
         self.parent.atualizar_tabela_emails()
         dados = self.parent.arquivos_pendentes()
         if dados is None:
             self.show_message_box("Nenhum dado encontrado.")
             return
+        geometry = self.table1.geometry()
+        new_fixed_wdth_coluns = [geometry.width() * (width / self.table_geometry_base[2]) for width in self.fixed_wdth_coluns_base]
         if self.table1 is not None:
             self.table1.itemClicked.disconnect()  
             self.table1.deleteLater()  
             self.table1 = None  
         self.table1 = CustomTable(
             parent=self,
-            geometry=[235, 240, 737, 310],
+            geometry=[*geometry.getRect()],
             qtd_cols_visible=4,
             rows_height=30,
             data=dados,
             cols_icon=True,
             path_icons_cols=r"C:\Users\breno\OneDrive\Documentos\Projeto Faturamento\GUI\PyQt\lupa.png",
-            widths_fixed_cols=[10, 320, 200, 170, 30],
+            widths_fixed_cols=new_fixed_wdth_coluns,
             col_flag=3,
             col_ocultar=1
         )
@@ -128,8 +152,14 @@ class ConfigurarEmailsGeral(QDialog):
         self.parent = parent
         self.setWindowTitle("Configurar emails")
         pg = parent.geometry()
-        self.setGeometry(pg.x() + 220, pg.y() + 50, pg.width() - 800, pg.height() - 500)
-        self.setFixedSize(pg.width() - 421, pg.height() - 86)
+        self.geometry_base = parent.base_geometry
+        per_x =  220 / self.geometry_base.width()
+        per_y = 50 / self.geometry_base.height()
+        per_width = (self.geometry_base.width() - 421) /  self.geometry_base.width()
+        per_height = (self.geometry_base.height() - 86) / self.geometry_base.height()
+        self.setGeometry(int(pg.x() + pg.width() * per_x),int(pg.y() + pg.height() * per_y), 
+                           int(pg.width() * per_width), int(pg.height() * per_height))
+        self.setFixedSize(int(pg.width() * per_width), int(pg.height() * per_height))
         self.layout = QVBoxLayout(self)
         pixmap = QPixmap(r"C:\Users\breno\Downloads\Configurar e-mails geral (3).png")
         label = QLabel(self)
@@ -179,6 +209,27 @@ class ConfigurarEmailsGeral(QDialog):
         else:
             # Se não for Enter, processa normalmente os outros eventos de tecla
             super().keyPressEvent(event)
+
+    def resize_widget(self, widget):
+        base = self.geometry_base
+        per_x = widget.geometry().x() / base.width()
+        per_y = widget.geometry().y() / base.height()
+        per_width = widget.geometry().width() / base.width()
+        per_height = widget.geometry().height() / base.height()
+        base_atual = self.parent.geometry()
+        widget.setGeometry(int(base_atual.width() * per_x),int(base_atual.height() * per_y), 
+                           int(base_atual.width() * per_width), int(base_atual.height() * per_height))
+        
+        
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        self.resize_widget(self.remetente)
+        self.resize_widget(self.destiny_edit)
+        self.resize_widget(self.cc_edit)
+        self.resize_widget(self.corpo_edit)
+        self.resize_widget(self.assunto_edit)
+        self.resize_widget(self.button_salvar)
+        self.geometry_base = self.parent.geometry()
         
                             
 class ConfigurarEmail(QDialog):
@@ -190,8 +241,14 @@ class ConfigurarEmail(QDialog):
         self.keyboard = Controller()
         self.setWindowTitle("Configurar email")
         pg = parent.geometry()
-        self.setGeometry(pg.x() + 220, pg.y() + 50, pg.width() - 800, pg.height() - 500)
-        self.setFixedSize(pg.width() - 421, pg.height() - 86)
+        self.geometry_base = parent.base_geometry
+        per_x =  220 / self.geometry_base.width()
+        per_y = 50 / self.geometry_base.height()
+        per_width = (self.geometry_base.width() - 421) /  self.geometry_base.width()
+        per_height = (self.geometry_base.height() - 86) / self.geometry_base.height()
+        self.setGeometry(int(pg.x() + pg.width() * per_x),int(pg.y() + pg.height() * per_y), 
+                           int(pg.width() * per_width), int(pg.height() * per_height))
+        self.setFixedSize(int(pg.width() * per_width), int(pg.height() * per_height))
         self.layout = QVBoxLayout(self)
         pixmap = QPixmap(r"C:\Users\breno\Downloads\Configurar e-mails dos escritórios (2).png")
         label = QLabel(self)
@@ -248,6 +305,30 @@ class ConfigurarEmail(QDialog):
 
     def exclui_arquivo_temp(self):
         self.parent.excluir_planilha_temporaria()
+
+    def resize_widget(self, widget):
+        base = self.geometry_base
+        per_x = widget.geometry().x() / base.width()
+        per_y = widget.geometry().y() / base.height()
+        per_width = widget.geometry().width() / base.width()
+        per_height = widget.geometry().height() / base.height()
+        base_atual = self.parent.geometry()
+        widget.setGeometry(int(base_atual.width() * per_x),int(base_atual.height() * per_y), 
+                           int(base_atual.width() * per_width), int(base_atual.height() * per_height))
+        
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        self.resize_widget(self.remetente)
+        self.resize_widget(self.destiny_edit)
+        self.resize_widget(self.cc_edit)
+        self.resize_widget(self.corpo_edit)
+        self.resize_widget(self.assunto_edit)
+        self.resize_widget(self.button_salvar)
+        self.resize_widget(self.button_abrir_arquivo)
+        self.resize_widget(self.nome_arquivo )
+        self.geometry_base = self.parent.geometry()
+
+
 
                         
 
